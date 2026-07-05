@@ -1,4 +1,4 @@
-package tanvir;
+package com.summer.section1.group4.medical_entrance_exam.tanvir;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
