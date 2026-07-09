@@ -30,10 +30,11 @@ public class LoginController {
         for(Login x: LoginManager.getLoginArrayList()) {
             if ((usernameTextField.getText().equals(x.getUsername())) && passwordTextField.getText().equals(x.getPassword()) && userTypeComboBox.getValue().equals("Applicant")) {
                 messegeLabel.setText("Login Successful");
+                SceneSwitcher.switchTo("/com/summer/section1/group4/medical_entrance_exam/zinat/Applicant.fxml");
 
             }
         }
-        SceneSwitcher.switchTo("/com/summer/section1/group4/medical_entrance_exam/zinat/Applicant.fxml");
+
         messegeLabel.setText("Login Failed");
 
 

@@ -1,11 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group4.medical_entrance_exam.zinat.ApplicantController">
+<AnchorPane prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group4.medical_entrance_exam.zinat.ApplicantController">
    <children>
-      <Label layoutX="309.0" layoutY="153.0" text="Applicant" />
+      <VBox prefHeight="800.0" prefWidth="265.0" spacing="5.0" style="-fx-background-color: #006643; -fx-padding: 10;">
+         <children>
+            <Label style="-fx-padding: 15;" text="Applicant Portal" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="Bell MT Bold" size="37.0" />
+               </font>
+            </Label>
+            <Button fx:id="ApplicantionFormFillUpBTN" mnemonicParsing="false" onAction="#handleMenuSelection" prefHeight="40.0" prefWidth="252.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: BASELINE_LEFT;" text="1. Form Fill Up" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="Bell MT" size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="DocumentUploadsBTN" mnemonicParsing="false" onAction="#handleMenuSelection" prefHeight="40.0" prefWidth="220.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: BASELINE_LEFT;" text="2. Document Uploads" wrapText="true">
+               <font>
+                  <Font name="Bell MT" size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="SecurePaymentBTN" mnemonicParsing="false" onAction="#handleMenuSelection" prefHeight="40.0" prefWidth="220.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: BASELINE_LEFT;" text="3. Secure Payment" wrapText="true">
+               <font>
+                  <Font name="Bell MT" size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="AdmitCardDownloadBTN" mnemonicParsing="false" onAction="#handleMenuSelection" prefHeight="40.0" prefWidth="220.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: BASELINE_LEFT;" text="4. Admit Card Download" wrapText="true">
+               <font>
+                  <Font name="Bell MT" size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="ViewCentreBTN" mnemonicParsing="false" onAction="#handleMenuSelection" prefHeight="40.0" prefWidth="220.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: BASELINE_LEFT;" text="5. View Centre" wrapText="true">
+               <font>
+                  <Font name="Bell MT" size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="CheckResultBTN" mnemonicParsing="false" onAction="#handleMenuSelection" prefHeight="40.0" prefWidth="240.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: BASELINE_LEFT;" text="6. Check Result" wrapText="true">
+               <font>
+                  <Font name="Bell MT" size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="ChoiceLockingBTN" mnemonicParsing="false" onAction="#handleMenuSelection" prefHeight="40.0" prefWidth="220.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: BASELINE_LEFT;" text="7. Choice Locking" wrapText="true">
+               <font>
+                  <Font name="Bell MT" size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="MedicalCollegeAllocationBTN" mnemonicParsing="false" onAction="#handleMenuSelection" prefHeight="40.0" prefWidth="244.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: BASELINE_LEFT;" text="8. Medical College Allocation" wrapText="true">
+               <font>
+                  <Font name="Bell MT" size="18.0" />
+               </font>
+            </Button>
+            <Separator prefWidth="200.0" style="-fx-padding: 10;" />
+            <Button mnemonicParsing="false" onAction="#MainMenuOA" prefHeight="40.0" prefWidth="265.0" style="-fx-background-color: #ef4444; -fx-text-fill: white;" text="Main Menu">
+               <font>
+                  <Font name="Bell MT Bold" size="25.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+      <AnchorPane fx:id="paneContentContainer" layoutX="265.0" prefHeight="800.0" prefWidth="535.0">
+         <children>
+            <Label layoutX="65.0" layoutY="127.0" prefHeight="344.0" prefWidth="406.0" text="Welcome to Applicant Portal" textAlignment="CENTER" textFill="#334155" wrapText="true">
+               <font>
+                  <Font name="Bell MT Bold" size="64.0" />
+               </font>
+            </Label>
+            <Label layoutX="44.0" layoutY="504.0" text="Please select a workflow goal from the left panel to begin." textFill="#64748b">
+               <font>
+                  <Font name="Bell MT" size="19.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
