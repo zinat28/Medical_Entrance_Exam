@@ -43,7 +43,7 @@ public class ApplicantController {
                 fxmlFile = "/com/summer/section1/group4/medical_entrance_exam/zinat/ApplicantForm.fxml";
                 break;
             case "DocumentUploadsBTN":
-                fxmlFile = "app_goal2.fxml";
+                fxmlFile = "/com/summer/section1/group4/medical_entrance_exam/zinat/DocumentsUpload.fxml";
                 break;
             case "SecurePaymentBTN":
                 fxmlFile = "app_goal3.fxml";
@@ -87,9 +87,21 @@ public class ApplicantController {
     }
 
     @FXML
-    public void MainMenuOA(ActionEvent event) {
+    public void ExitOA(ActionEvent event) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/com/summer/section1/group4/medical_entrance_exam/zinat/Login.fxml"));
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            currentStage.setScene(new Scene(root));
+            currentStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void MainMenuOA(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/com/summer/section1/group4/medical_entrance_exam/zinat/Applicant.fxml"));
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             currentStage.setScene(new Scene(root));
             currentStage.show();

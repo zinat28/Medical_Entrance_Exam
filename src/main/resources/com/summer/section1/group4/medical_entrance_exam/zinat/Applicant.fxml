@@ -57,7 +57,12 @@
                </font>
             </Button>
             <Separator prefWidth="200.0" style="-fx-padding: 10;" />
-            <Button mnemonicParsing="false" onAction="#MainMenuOA" prefHeight="40.0" prefWidth="265.0" style="-fx-background-color: #ef4444; -fx-text-fill: white;" text="Main Menu">
+            <Button layoutX="20.0" layoutY="533.0" mnemonicParsing="false" onAction="#MainMenuOA" prefHeight="40.0" prefWidth="265.0" style="-fx-background-color: #Fa003F; -fx-text-fill: white;" text="MAIN MENU">
+               <font>
+                  <Font name="Bell MT Bold" size="25.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#ExitOA" prefHeight="40.0" prefWidth="265.0" style="-fx-background-color: #Fa003F; -fx-text-fill: white;" text="LOGOUT">
                <font>
                   <Font name="Bell MT Bold" size="25.0" />
                </font>
@@ -66,13 +71,13 @@
       </VBox>
       <AnchorPane fx:id="paneContentContainer" layoutX="265.0" prefHeight="800.0" prefWidth="594.0">
          <children>
-            <VBox prefHeight="800.0" prefWidth="535.0" />
-            <Label layoutX="75.0" layoutY="137.0" prefHeight="344.0" prefWidth="406.0" text="Welcome to Applicant Portal" textAlignment="CENTER" textFill="#334155" wrapText="true">
+            <VBox prefHeight="800.0" prefWidth="594.0" />
+            <Label layoutX="93.0" layoutY="137.0" prefHeight="344.0" prefWidth="406.0" text="Welcome to Applicant Portal" textAlignment="CENTER" textFill="#082c5e" wrapText="true">
                <font>
                   <Font name="Bell MT Bold" size="64.0" />
                </font>
             </Label>
-            <Label layoutX="54.0" layoutY="514.0" text="Please select a workflow goal from the left panel to begin." textFill="#64748b">
+            <Label layoutX="72.0" layoutY="514.0" text="Please select a workflow goal from the left panel to begin." textFill="#082c5e">
                <font>
                   <Font name="Bell MT" size="19.0" />
                </font>

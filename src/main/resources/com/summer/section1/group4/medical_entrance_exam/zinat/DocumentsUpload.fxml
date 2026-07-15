@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" style="-fx-padding: 30;" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group4.medical_entrance_exam.zinat.DocumentUploadController">
+   <children>
+      <Label alignment="CENTER" layoutX="99.0" layoutY="104.0" prefHeight="165.0" prefWidth="391.0" text="Document Upload" textAlignment="CENTER" textFill="#082c5e" wrapText="true">
+         <font>
+            <Font name="Bell MT Bold" size="37.0" />
+         </font>
+      </Label>
+      <GridPane hgap="20.0" layoutX="26.0" layoutY="303.0" prefHeight="239.0" prefWidth="560.0" vgap="15.0">
+         <columnConstraints>
+            <ColumnConstraints maxWidth="230.5" minWidth="120.0" prefWidth="210.0" />
+            <ColumnConstraints maxWidth="355.5" minWidth="137.0" prefWidth="190.5" />
+            <ColumnConstraints maxWidth="355.5" minWidth="101.5" prefWidth="119.5" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="30.0" />
+            <RowConstraints minHeight="30.0" />
+            <RowConstraints minHeight="30.0" />
+         </rowConstraints>
+         <children>
+            <Label text="Verification Document" wrapText="true">
+               <font>
+                  <Font name="Bell MT" size="18.0" />
+               </font>
+            </Label>
+            <Label text="SSC Transcript/ Certificate" wrapText="true" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Bell MT" size="18.0" />
+               </font>
+            </Label>
+            <Label text="HSC Transcript/ Certificate" wrapText="true" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Bell MT" size="18.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="VerificationDocumentComB" prefHeight="60.0" prefWidth="194.0" promptText="Verification Document Type" GridPane.columnIndex="1" />
+            <Button mnemonicParsing="false" onAction="#VerificationDocumentOA" prefHeight="59.0" prefWidth="104.0" text="Attach File" GridPane.columnIndex="2" />
+            <Button mnemonicParsing="false" onAction="#SscDocumentOA" prefHeight="59.0" prefWidth="104.0" text="Attach File" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" onAction="#HscDocumentOA" prefHeight="59.0" prefWidth="104.0" text="Attach File" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <ComboBox fx:id="SscDocumentComB" prefHeight="60.0" prefWidth="194.0" promptText="Document Type" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <ComboBox fx:id="HscDocumentComB" prefHeight="60.0" prefWidth="194.0" promptText="Document Type" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+         </children>
+      </GridPane>
+      <Button layoutX="178.0" layoutY="589.0" mnemonicParsing="false" onAction="#SubmitDocumentsOA" style="-fx-background-color: #006643;" text="Submit Documents" textFill="WHITE">
+         <font>
+            <Font name="Bell MT Bold" size="24.0" />
+         </font>
+      </Button>
+      <Label fx:id="DocumentUploadStatusLabel" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="50.0" layoutY="650.0" prefHeight="127.0" prefWidth="500.0" text="STATUS: Awaiting Document Submission." textAlignment="CENTER" textFill="#068053" wrapText="true">
+         <font>
+            <Font name="Bell MT Bold" size="22.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane focusTraversable="true" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group4.medical_entrance_exam.zinat.LoginController">
+<AnchorPane focusTraversable="true" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group4.medical_entrance_exam.zinat.LoginController">
    <children>
       <Label alignment="BASELINE_LEFT" layoutX="248.0" layoutY="337.0" text="Username" textAlignment="RIGHT">
          <font>
@@ -40,7 +40,7 @@
             <Cursor fx:constant="DEFAULT" />
          </cursor>
       </ComboBox>
-      <Button layoutX="247.0" layoutY="473.0" mnemonicParsing="false" onAction="#loginButtonOnAction" prefHeight="42.0" prefWidth="335.0" style="-fx-background-color: #006643;" text="Button" textFill="WHITE">
+      <Button layoutX="247.0" layoutY="473.0" mnemonicParsing="false" onAction="#loginButtonOnAction" prefHeight="42.0" prefWidth="335.0" style="-fx-background-color: #006643;" text="LOGIN" textFill="WHITE">
          <font>
             <Font name="Bell MT Bold" size="22.0" />
          </font>
@@ -72,7 +72,7 @@
             </Label>
          </children>
       </VBox>
-      <Label fx:id="messegeLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="279.0" layoutY="551.0" prefHeight="82.0" prefWidth="271.0" text=" " textAlignment="CENTER" textFill="#006643" wrapText="true">
+      <Label fx:id="messegeLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="279.0" layoutY="551.0" prefHeight="82.0" prefWidth="271.0" text=" " textAlignment="CENTER" textFill="#fa003f" wrapText="true">
          <font>
             <Font name="Bell MT Bold" size="22.0" />
          </font>
