@@ -46,13 +46,13 @@ public class ApplicantController {
                 fxmlFile = "/com/summer/section1/group4/medical_entrance_exam/zinat/DocumentsUpload.fxml";
                 break;
             case "SecurePaymentBTN":
-                fxmlFile = "app_goal3.fxml";
+                fxmlFile = "/com/summer/section1/group4/medical_entrance_exam/zinat/Payment.fxml";
                 break;
             case "AdmitCardDownloadBTN":
-                fxmlFile = "app_goal4.fxml";
+                fxmlFile = "/com/summer/section1/group4/medical_entrance_exam/zinat/AdmitCardDownload.fxml";
                 break;
             case "ViewCentreBTN":
-                fxmlFile = "app_goal5.fxml";
+                fxmlFile = "/com/summer/section1/group4/medical_entrance_exam/zinat/ExamCenter.fxml";
                 break;
             case "CheckResultBTN":
                 fxmlFile = "app_goal6.fxml";
