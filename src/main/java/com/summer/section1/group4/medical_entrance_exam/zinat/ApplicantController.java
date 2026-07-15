@@ -13,6 +13,22 @@ import java.io.IOException;
 
 public class ApplicantController {
     @FXML private AnchorPane paneContentContainer;
+    @FXML
+    private Button SecurePaymentBTN;
+    @FXML
+    private Button DocumentUploadsBTN;
+    @FXML
+    private Button ApplicationFormFillUpBTN;
+    @FXML
+    private Button CheckResultBTN;
+    @FXML
+    private Button AdmitCardDownloadBTN;
+    @FXML
+    private Button MedicalCollegeAllocationBTN;
+    @FXML
+    private Button ViewCentreBTN;
+    @FXML
+    private Button ChoiceLockingBTN;
 
 
     @FXML

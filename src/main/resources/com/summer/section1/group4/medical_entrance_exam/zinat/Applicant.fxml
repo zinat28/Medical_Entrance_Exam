@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group4.medical_entrance_exam.zinat.ApplicantController">
+<AnchorPane prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group4.medical_entrance_exam.zinat.ApplicantController">
    <children>
       <VBox prefHeight="800.0" prefWidth="265.0" spacing="5.0" style="-fx-background-color: #006643; -fx-padding: 10;">
          <children>
@@ -16,7 +16,7 @@
                   <Font name="Bell MT Bold" size="37.0" />
                </font>
             </Label>
-            <Button fx:id="ApplicantionFormFillUpBTN" mnemonicParsing="false" onAction="#handleMenuSelection" prefHeight="40.0" prefWidth="252.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: BASELINE_LEFT;" text="1. Form Fill Up" textFill="WHITE" wrapText="true">
+            <Button fx:id="ApplicationFormFillUpBTN" mnemonicParsing="false" onAction="#handleMenuSelection" prefHeight="40.0" prefWidth="252.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: BASELINE_LEFT;" text="1. Form Fill Up" textFill="WHITE" wrapText="true">
                <font>
                   <Font name="Bell MT" size="18.0" />
                </font>
@@ -64,14 +64,15 @@
             </Button>
          </children>
       </VBox>
-      <AnchorPane fx:id="paneContentContainer" layoutX="265.0" prefHeight="800.0" prefWidth="535.0">
+      <AnchorPane fx:id="paneContentContainer" layoutX="265.0" prefHeight="800.0" prefWidth="594.0">
          <children>
-            <Label layoutX="65.0" layoutY="127.0" prefHeight="344.0" prefWidth="406.0" text="Welcome to Applicant Portal" textAlignment="CENTER" textFill="#334155" wrapText="true">
+            <VBox prefHeight="800.0" prefWidth="535.0" />
+            <Label layoutX="75.0" layoutY="137.0" prefHeight="344.0" prefWidth="406.0" text="Welcome to Applicant Portal" textAlignment="CENTER" textFill="#334155" wrapText="true">
                <font>
                   <Font name="Bell MT Bold" size="64.0" />
                </font>
             </Label>
-            <Label layoutX="44.0" layoutY="504.0" text="Please select a workflow goal from the left panel to begin." textFill="#64748b">
+            <Label layoutX="54.0" layoutY="514.0" text="Please select a workflow goal from the left panel to begin." textFill="#64748b">
                <font>
                   <Font name="Bell MT" size="19.0" />
                </font>

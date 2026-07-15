@@ -12,15 +12,14 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group4.medical_entrance_exam.zinat.ApplicantFormController">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" style="-fx-padding: 30;" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group4.medical_entrance_exam.zinat.ApplicantFormController">
    <children>
-      <Label layoutX="331.0" layoutY="44.0" prefHeight="165.0" prefWidth="391.0" text="Applicant Registration Form Fill Up" textAlignment="CENTER" textFill="#0f172a" wrapText="true">
+      <Label layoutX="99.0" layoutY="104.0" prefHeight="165.0" prefWidth="391.0" text="Applicant Registration Form Fill Up" textAlignment="CENTER" textFill="#0f172a" wrapText="true">
          <font>
             <Font name="Bell MT Bold" size="37.0" />
          </font>
       </Label>
-      <GridPane hgap="20.0" layoutX="282.0" layoutY="274.0" prefHeight="218.0" prefWidth="500.0" vgap="15.0">
+      <GridPane hgap="20.0" layoutX="50.0" layoutY="334.0" prefHeight="218.0" prefWidth="500.0" vgap="15.0">
          <columnConstraints>
             <ColumnConstraints maxWidth="156.0" minWidth="120.0" prefWidth="156.0" />
             <ColumnConstraints maxWidth="355.5" minWidth="200.0" prefWidth="324.0" />
@@ -32,12 +31,12 @@
             <RowConstraints minHeight="30.0" />
          </rowConstraints>
          <children>
-            <Label text="Full Name:" GridPane.columnIndex="0" GridPane.rowIndex="0">
+            <Label text="Full Name:">
                <font>
                   <Font name="Bell MT" size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="FullNameTF" prefHeight="40.0" prefWidth="304.0" promptText="Enter your full name" GridPane.columnIndex="1" GridPane.rowIndex="0">
+            <TextField fx:id="FullNameTF" prefHeight="40.0" prefWidth="304.0" promptText="Enter your full name" GridPane.columnIndex="1">
                <font>
                   <Font name="Bell MT" size="18.0" />
                </font>
@@ -80,12 +79,12 @@
             </HBox>
          </children>
       </GridPane>
-      <Button layoutX="367.0" layoutY="529.0" mnemonicParsing="false" onAction="#SubmitApplicationOA" style="-fx-background-color: #006643;" text="Submit Application Details" textFill="WHITE">
+      <Button layoutX="135.0" layoutY="589.0" mnemonicParsing="false" onAction="#SubmitApplicationOA" style="-fx-background-color: #006643;" text="Submit Application Details" textFill="WHITE">
          <font>
             <Font name="Bell MT Bold" size="24.0" />
          </font>
       </Button>
-      <Label fx:id="FormStatusLabel" layoutX="379.0" layoutY="615.0" text="Status: Awaiting input form submission." textFill="#475569" wrapText="true">
+      <Label fx:id="FormStatusLabel" layoutX="147.0" layoutY="675.0" text="Status: Awaiting input form submission." textFill="#475569" wrapText="true">
          <font>
             <Font name="Bell MT" size="18.0" />
          </font>
