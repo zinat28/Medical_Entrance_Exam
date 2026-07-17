@@ -1,4 +1,4 @@
-package com.summer.section1.group4.medical_entrance_exam.zinat;
+package com.summer.section1.group4.medical_entrance_exam.zinat.Applicant;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -40,28 +40,28 @@ public class ApplicantController {
         // Determine which target view window needs to load inside the pane container box
         switch (buttonId) {
             case "ApplicationFormFillUpBTN":
-                fxmlFile = "/com/summer/section1/group4/medical_entrance_exam/zinat/ApplicantForm.fxml";
+                fxmlFile = "/com/summer/section1/group4/medical_entrance_exam/zinat/Applicant/ApplicantForm.fxml";
                 break;
             case "DocumentUploadsBTN":
-                fxmlFile = "/com/summer/section1/group4/medical_entrance_exam/zinat/DocumentsUpload.fxml";
+                fxmlFile = "/com/summer/section1/group4/medical_entrance_exam/zinat/Applicant/DocumentsUpload.fxml";
                 break;
             case "SecurePaymentBTN":
-                fxmlFile = "/com/summer/section1/group4/medical_entrance_exam/zinat/Payment.fxml";
+                fxmlFile = "/com/summer/section1/group4/medical_entrance_exam/zinat/Applicant/Payment.fxml";
                 break;
             case "AdmitCardDownloadBTN":
-                fxmlFile = "/com/summer/section1/group4/medical_entrance_exam/zinat/AdmitCardDownload.fxml";
+                fxmlFile = "/com/summer/section1/group4/medical_entrance_exam/zinat/Applicant/AdmitCardDownload.fxml";
                 break;
             case "ViewCentreBTN":
-                fxmlFile = "/com/summer/section1/group4/medical_entrance_exam/zinat/ExamCenter.fxml";
+                fxmlFile = "/com/summer/section1/group4/medical_entrance_exam/zinat/Applicant/ExamCenter.fxml";
                 break;
             case "CheckResultBTN":
-                fxmlFile = "/com/summer/section1/group4/medical_entrance_exam/zinat/Result.fxml";
+                fxmlFile = "/com/summer/section1/group4/medical_entrance_exam/zinat/Applicant/Result.fxml";
                 break;
             case "ChoiceLockingBTN":
-                fxmlFile = "/com/summer/section1/group4/medical_entrance_exam/zinat/ChoiceLocking.fxml";
+                fxmlFile = "/com/summer/section1/group4/medical_entrance_exam/zinat/Applicant/ChoiceLocking.fxml";
                 break;
             case "MedicalCollegeAllocationBTN":
-                fxmlFile = "/com/summer/section1/group4/medical_entrance_exam/zinat/AllocatedCollege.fxml";
+                fxmlFile = "/com/summer/section1/group4/medical_entrance_exam/zinat/Applicant/AllocatedCollege.fxml";
                 break;
         }
 
@@ -101,7 +101,7 @@ public class ApplicantController {
     @FXML
     public void MainMenuOA(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/com/summer/section1/group4/medical_entrance_exam/zinat/Applicant.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/com/summer/section1/group4/medical_entrance_exam/zinat/Applicant/Applicant.fxml"));
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             currentStage.setScene(new Scene(root));
             currentStage.show();

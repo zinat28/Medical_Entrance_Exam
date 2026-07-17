@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group4.medical_entrance_exam.zinat.ApplicantController">
+<AnchorPane prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group4.medical_entrance_exam.zinat.Applicant.ApplicantController">
    <children>
       <VBox prefHeight="800.0" prefWidth="265.0" spacing="5.0" style="-fx-background-color: #006643; -fx-padding: 10;">
          <children>

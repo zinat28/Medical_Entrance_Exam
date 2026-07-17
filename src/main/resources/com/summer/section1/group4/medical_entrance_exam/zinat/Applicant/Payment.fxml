@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" style="-fx-padding: 30;" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group4.medical_entrance_exam.zinat.PaymentController">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" style="-fx-padding: 30;" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group4.medical_entrance_exam.zinat.Applicant.PaymentController">
    <children>
       <Label alignment="CENTER" layoutX="105.0" layoutY="107.0" prefHeight="165.0" prefWidth="391.0" text="PAYMENT" textAlignment="CENTER" textFill="#082c5e" wrapText="true">
          <font>

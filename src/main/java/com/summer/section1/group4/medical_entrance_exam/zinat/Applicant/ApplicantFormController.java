@@ -1,4 +1,4 @@
-package com.summer.section1.group4.medical_entrance_exam.zinat;
+package com.summer.section1.group4.medical_entrance_exam.zinat.Applicant;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -6,9 +6,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 public class ApplicantFormController {
     @javafx.fxml.FXML

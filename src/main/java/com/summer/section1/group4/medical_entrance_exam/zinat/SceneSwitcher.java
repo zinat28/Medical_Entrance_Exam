@@ -1,4 +1,5 @@
 package com.summer.section1.group4.medical_entrance_exam.zinat;
+
 import com.summer.section1.group4.medical_entrance_exam.HelloApplication;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

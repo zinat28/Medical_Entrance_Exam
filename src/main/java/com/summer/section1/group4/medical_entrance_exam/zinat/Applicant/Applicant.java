@@ -1,4 +1,4 @@
-package com.summer.section1.group4.medical_entrance_exam.zinat;
+package com.summer.section1.group4.medical_entrance_exam.zinat.Applicant;
 
 import java.time.LocalDate;
 
