@@ -8,7 +8,7 @@ public class LoginManager {
 
     static {
         loginArrayList.add(new Login("zinat", "12345", "Applicant"));
-        loginArrayList.add(new Login("z", "1", "Question Moderator"));
+        loginArrayList.add(new Login("zinat", "12345", "Question Moderator"));
     }
 
     public static List<Login> getLoginArrayList(){

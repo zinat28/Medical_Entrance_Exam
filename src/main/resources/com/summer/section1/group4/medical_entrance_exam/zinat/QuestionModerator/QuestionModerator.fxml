@@ -46,7 +46,7 @@
                   <Font name="Bell MT" size="18.0" />
                </font>
             </Button>
-            <Button fx:id="SetMarksNegativeBTN" mnemonicParsing="false" onAction="#handleMenuSelection" prefHeight="40.0" prefWidth="220.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: BASELINE_LEFT;" text="7. Set Marks &amp; Negative" wrapText="true">
+            <Button fx:id="SetMarksAwardDeductBTN" mnemonicParsing="false" onAction="#handleMenuSelection" prefHeight="64.0" prefWidth="220.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: BASELINE_LEFT;" text="7. Set Marks (Awarded or Deducted)" wrapText="true">
                <font>
                   <Font name="Bell MT" size="18.0" />
                </font>

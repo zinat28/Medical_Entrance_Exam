@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" style="-fx-padding: 30;" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group4.medical_entrance_exam.zinat.QuestionModerator.AddQuestionActiveBankController">
+   <children>
+      <Label layoutX="97.0" layoutY="104.0" prefHeight="165.0" prefWidth="406.0" text="Add Multiple Choice Question to Active Bank" textAlignment="CENTER" textFill="#082c5e" wrapText="true">
+         <font>
+            <Font name="Bell MT Bold" size="37.0" />
+         </font>
+      </Label>
+      <GridPane hgap="20.0" layoutX="50.0" layoutY="287.0" prefHeight="99.0" prefWidth="500.0" vgap="15.0">
+         <columnConstraints>
+            <ColumnConstraints maxWidth="156.0" minWidth="120.0" prefWidth="156.0" />
+            <ColumnConstraints maxWidth="355.5" minWidth="200.0" prefWidth="324.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="30.0" prefHeight="30.0" />
+            <RowConstraints minHeight="30.0" />
+            <RowConstraints minHeight="30.0" />
+            <RowConstraints minHeight="30.0" prefHeight="30.0" />
+            <RowConstraints minHeight="30.0" prefHeight="30.0" />
+            <RowConstraints minHeight="30.0" prefHeight="30.0" />
+         </rowConstraints>
+         <children>
+            <Label text="Question" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Bell MT" size="18.0" />
+               </font>
+            </Label>
+            <Label text="Option A" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Bell MT" size="18.0" />
+               </font>
+            </Label>
+                <ComboBox fx:id="SetChooserCombBox" prefHeight="54.0" prefWidth="200.0" promptText="Choose Set" GridPane.columnIndex="1" />
+
+                      <TextField fx:id="QuestionDetailsTF" promptText="Enter Question Description Core Body" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Bell MT" size="18.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="QuestionOptionATF" promptText="Option A" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Bell MT" size="18.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="QuestionOptionDTF" promptText="Option D" GridPane.columnIndex="1" GridPane.rowIndex="5">
+               <font>
+                  <Font name="Bell MT" size="18.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="QuestionOptionCTF" promptText="Option C" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <font>
+                  <Font name="Bell MT" size="18.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="QuestionOptionBTF" promptText="Option B" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <font>
+                  <Font name="Bell MT" size="18.0" />
+               </font>
+            </TextField>
+            <Label text="Set">
+               <font>
+                  <Font name="Bell MT" size="18.0" />
+               </font>
+            </Label>
+            <Label text="Option D" GridPane.rowIndex="5">
+               <font>
+                  <Font name="Bell MT" size="18.0" />
+               </font>
+            </Label>
+            <Label text="Option C" GridPane.rowIndex="4">
+               <font>
+                  <Font name="Bell MT" size="18.0" />
+               </font>
+            </Label>
+            <Label text="Option B" GridPane.rowIndex="3">
+               <font>
+                  <Font name="Bell MT" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </GridPane>
+      <Button layoutX="192.0" layoutY="582.0" mnemonicParsing="false" onAction="#SaveMCQOA" style="-fx-background-color: #006643;" text="Append MCQ Item" textFill="WHITE">
+         <font>
+            <Font name="Bell MT Bold" size="24.0" />
+         </font>
+      </Button>
+      <Label fx:id="SaveMCQStatusLabel" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="50.0" layoutY="650.0" prefHeight="127.0" prefWidth="500.0" text="STATUS: Awaiting for question input" textAlignment="CENTER" textFill="#068053" wrapText="true">
+         <font>
+            <Font name="Bell MT Bold" size="22.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
