@@ -1,5 +1,7 @@
 package com.summer.section1.group4.medical_entrance_exam.zinat.Applicant;
 
+import com.summer.section1.group4.medical_entrance_exam.zinat.Applicant.Applicant;
+import com.summer.section1.group4.medical_entrance_exam.zinat.Applicant.ApplicationSession;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
@@ -8,32 +10,46 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 public class ApplicantFormController {
-    @javafx.fxml.FXML
+    @FXML
     private TextField FullNameTF;
-    @javafx.fxml.FXML
+    @FXML
     private DatePicker DobTF;
-    @javafx.fxml.FXML
+    @FXML
     private ComboBox<String> SscBoardComB;
-    @javafx.fxml.FXML
+    @FXML
     private ComboBox<String> HscBoardComB;
-    @javafx.fxml.FXML
+    @FXML
     private TextField SscGpaTF;
-    @javafx.fxml.FXML
+    @FXML
     private TextField HscGpaTF;
-    @javafx.fxml.FXML
+    @FXML
     private Label FormStatusLabel;
 
-
     @FXML
-    public void initialize(){
-        String[] boards = {"Dhaka", "Chattogram", "Rajshahi", "Sylhet", "Barishal", "Khulna", "Jessore", "Dinajpur", "Cumilla", "Mymensingh", "Technical", "Madrasah"};
+    public void initialize() {
+        String[] boards = {"Dhaka", "Chattogram", "Rajshahi", "Sylhet", "Barishal", "Khulna",
+                "Jessore", "Dinajpur", "Cumilla", "Mymensingh", "Technical", "Madrasah"};
         SscBoardComB.getItems().addAll(boards);
         HscBoardComB.getItems().addAll(boards);
+
+        // If the applicant already filled this form earlier in the session, show it again
+        // instead of a blank form (nice-to-have, mirrors "system memory" behaviour).
+        Applicant existing = ApplicationSession.getInstance().getApplicant();
+        if (existing != null) {
+            FullNameTF.setText(existing.getApplicantName());
+            DobTF.setValue(existing.getApplicantDob());
+            SscBoardComB.setValue(existing.getSscBoard());
+            HscBoardComB.setValue(existing.getHscBoard());
+            SscGpaTF.setText(String.valueOf(existing.getSscGpa()));
+            HscGpaTF.setText(String.valueOf(existing.getHscGpa()));
+        }
     }
 
-    @javafx.fxml.FXML
+    @FXML
     public void SubmitApplicationOA(ActionEvent actionEvent) {
-        if (FullNameTF.getText().trim().isEmpty() || SscGpaTF.getText().trim().isEmpty() || HscGpaTF.getText().trim().isEmpty()) {
+        // --- VL: validate that all required input fields are not empty ---
+        if (FullNameTF.getText().trim().isEmpty() || SscGpaTF.getText().trim().isEmpty()
+                || HscGpaTF.getText().trim().isEmpty()) {
             FormStatusLabel.setText("VALIDATION ERROR: Please fill out all text boxes!");
             return;
         }
@@ -41,21 +57,40 @@ public class ApplicantFormController {
             FormStatusLabel.setText("VALIDATION ERROR: Missing date selection or board parameters!");
             return;
         }
-        if ((Double.parseDouble(SscGpaTF.getText())>5.00) || (Double.parseDouble(HscGpaTF.getText())>5.00)){
-            FormStatusLabel.setText("VALIDATION ERROR: GPA can not be greater than 5.00");
+
+        double sscGpa, hscGpa;
+        try {
+            sscGpa = Double.parseDouble(SscGpaTF.getText().trim());
+            hscGpa = Double.parseDouble(HscGpaTF.getText().trim());
+        } catch (NumberFormatException e) {
+            FormStatusLabel.setText("VALIDATION ERROR: GPA fields must be numeric (e.g. 4.83).");
             return;
         }
 
+        // --- VR: verify academic eligibility criteria for medical admission ---
+        if (sscGpa > 5.00 || hscGpa > 5.00) {
+            FormStatusLabel.setText("VALIDATION ERROR: GPA can not be greater than 5.00");
+            return;
+        }
+        final double MINIMUM_ELIGIBLE_GPA = 3.50;
+        if (sscGpa < MINIMUM_ELIGIBLE_GPA || hscGpa < MINIMUM_ELIGIBLE_GPA) {
+            FormStatusLabel.setText("VALIDATION ERROR: Minimum GPA of " + MINIMUM_ELIGIBLE_GPA
+                    + " in both SSC & HSC is required for medical admission eligibility.");
+            return;
+        }
+
+        // --- DP, OP: verification successful -> save data to the system (session) ---
         Applicant a = new Applicant(
-                FullNameTF.getText(),
+                FullNameTF.getText().trim(),
                 SscBoardComB.getValue(),
                 HscBoardComB.getValue(),
-                Double.parseDouble(SscGpaTF.getText()),
-                Double.parseDouble(HscGpaTF.getText()),
+                sscGpa,
+                hscGpa,
                 DobTF.getValue());
 
+        ApplicationSession.getInstance().setApplicant(a);
+
         FormStatusLabel.setText("SUCCESS: Saved! Move to Goal 2: Document Uploads next.");
-
-
     }
 }
+
