@@ -10,19 +10,31 @@ public final class DatabaseConnection {
     private static final String DATABASE_URL =
             "jdbc:sqlite:medical_entrance_exam.db";
 
+
     private DatabaseConnection() {
-        // Prevent objects of this utility class from being created.
+        // Prevent object creation
     }
+
 
     public static Connection getConnection() throws SQLException {
 
         Connection connection =
                 DriverManager.getConnection(DATABASE_URL);
 
-        // Enable foreign-key checking in SQLite.
+        System.out.println(
+                "Connected Database: "
+                        + connection.getMetaData().getURL()
+        );
+
+
+        // Enable foreign key support
         try (Statement statement = connection.createStatement()) {
-            statement.execute("PRAGMA foreign_keys = ON");
+
+            statement.execute(
+                    "PRAGMA foreign_keys = ON"
+            );
         }
+
 
         return connection;
     }
