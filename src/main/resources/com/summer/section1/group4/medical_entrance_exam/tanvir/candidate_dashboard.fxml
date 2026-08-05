@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.summer.section1.group4.medical_entrance_exam.tanvir.user7user8.controller.CandidateDashboardController"
+      spacing="15"
+      alignment="CENTER"
+      prefHeight="500"
+      prefWidth="700">
+
+
+    <Label text="Candidate List"
+           style="-fx-font-size:20px;"/>
+
+
+    <TableView fx:id="candidateTable"
+               prefHeight="350"
+               prefWidth="650">
+
+
+        <columns>
+
+            <TableColumn fx:id="idColumn"
+                         text="ID"
+                         prefWidth="80"/>
+
+
+            <TableColumn fx:id="nameColumn"
+                         text="Name"
+                         prefWidth="150"/>
+
+
+            <TableColumn fx:id="emailColumn"
+                         text="Email"
+                         prefWidth="180"/>
+
+
+            <TableColumn fx:id="phoneColumn"
+                         text="Phone"
+                         prefWidth="120"/>
+
+
+            <TableColumn fx:id="statusColumn"
+                         text="Status"
+                         prefWidth="120"/>
+
+        </columns>
+
+
+    </TableView>
+
+
+    <Button text="Refresh"
+            onAction="#refreshCandidates"/>
+
+
+</VBox>
