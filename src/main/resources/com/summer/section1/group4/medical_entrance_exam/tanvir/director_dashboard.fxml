@@ -9,29 +9,42 @@
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.summer.section1.group4.medical_entrance_exam.tanvir.user7user8.controller.DirectorDashboardController"
       alignment="CENTER"
-      spacing="15"
-      prefWidth="600"
-      prefHeight="400">
+      spacing="20"
+      prefWidth="520"
+      prefHeight="460">
 
     <padding>
-        <Insets top="20" right="20" bottom="20" left="20"/>
+        <Insets top="30"
+                right="30"
+                bottom="30"
+                left="30"/>
     </padding>
 
-    <Label fx:id="welcomeLabel"
-           text="Welcome Director"
-           style="-fx-font-size: 22px; -fx-font-weight: bold;" />
+    <Label text="Welcome Director"
+           style="-fx-font-size: 24px;
+                  -fx-font-weight: bold;"/>
+
+    <Label text="Director Management Dashboard"
+           style="-fx-text-fill: #666666;"/>
 
     <Button text="View All Candidates"
-            prefWidth="220"/>
+            prefWidth="230"
+            prefHeight="42"
+            onAction="#handleViewCandidates"/>
 
     <Button text="Approve Candidates"
-            prefWidth="220"/>
+            prefWidth="230"
+            prefHeight="42"
+            onAction="#handleApproveCandidates"/>
 
     <Button text="Generate Report"
-            prefWidth="220"/>
+            prefWidth="230"
+            prefHeight="42"
+            onAction="#handleGenerateReport"/>
 
     <Button text="Logout"
-            prefWidth="220"
+            prefWidth="230"
+            prefHeight="42"
             onAction="#handleLogout"/>
 
 </VBox>
