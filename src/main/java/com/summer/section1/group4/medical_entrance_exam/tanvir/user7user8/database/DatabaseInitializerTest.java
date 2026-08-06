@@ -4,6 +4,14 @@ public class DatabaseInitializerTest {
 
     public static void main(String[] args) {
 
+        System.out.println(
+                "Starting database initialization..."
+        );
+
         DatabaseInitializer.initializeDatabase();
+
+        System.out.println(
+                "Database initialization test completed."
+        );
     }
 }

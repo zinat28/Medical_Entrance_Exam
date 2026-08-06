@@ -1,106 +1,165 @@
 package com.summer.section1.group4.medical_entrance_exam.tanvir.user7user8.controller;
 
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.Node;
+import javafx.scene.control.Alert;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+import java.net.URL;
 
 public class MedicalOfficerDashboardController {
 
+    private static final String RESOURCE_BASE =
+            "/com/summer/section1/group4/"
+                    + "medical_entrance_exam/tanvir/";
 
     @FXML
-    private void handleViewCandidates(ActionEvent event) {
+    private void handleViewCandidates(
+            ActionEvent event
+    ) {
+
+        openWindow(
+                "candidate_dashboard.fxml",
+                "Candidate List",
+                false
+        );
+    }
+
+    @FXML
+    private void handleVerifyDocuments(
+            ActionEvent event
+    ) {
+
+        openWindow(
+                "verify_documents.fxml",
+                "Document Verification",
+                true
+        );
+    }
+
+    @FXML
+    private void handleLogout(
+            ActionEvent event
+    ) {
 
         try {
 
-            FXMLLoader loader = new FXMLLoader(
+            URL resource =
                     getClass().getResource(
-                            "/com/summer/section1/group4/medical_entrance_exam/tanvir/candidate_dashboard.fxml")
-            );
+                            RESOURCE_BASE + "login.fxml"
+                    );
 
+            if (resource == null) {
+
+                showError(
+                        "FXML Error",
+                        "login.fxml was not found."
+                );
+
+                return;
+            }
+
+            FXMLLoader loader =
+                    new FXMLLoader(resource);
 
             Parent root = loader.load();
 
-
-            Stage stage = new Stage();
-
-            stage.setTitle("Candidate List");
-            stage.setScene(new Scene(root));
-
-            stage.show();
-
-
-        } catch(Exception e){
-
-            e.printStackTrace();
-
-        }
-
-    }
-
-
-
-    @FXML
-    private void handleVerifyDocuments(ActionEvent event){
-
-        System.out.println("Document verification page coming soon");
-
-    }
-
-
-
-
-    @FXML
-    private void handleLogout(ActionEvent event){
-
-        try {
-
-
-            // Close current dashboard window
-
             Stage currentStage =
-                    (Stage)((Node)event.getSource())
+                    (Stage) ((Node) event.getSource())
                             .getScene()
                             .getWindow();
 
-
-            currentStage.close();
-
-
-
-            // Open login page
-
-            FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource(
-                            "/com/summer/section1/group4/medical_entrance_exam/tanvir/login.fxml")
+            currentStage.setTitle(
+                    "Combined Medical Entrance Exam Portal"
             );
 
+            currentStage.setScene(
+                    new Scene(root)
+            );
 
-            Parent root = loader.load();
+            currentStage.centerOnScreen();
 
-
-            Stage loginStage = new Stage();
-
-            loginStage.setTitle("Combined Medical Entrance Exam Portal");
-
-            loginStage.setScene(new Scene(root));
-
-            loginStage.show();
-
-
-
-        } catch(Exception e){
+        } catch (IOException e) {
 
             e.printStackTrace();
 
+            showError(
+                    "Logout Error",
+                    "Could not return to the login page."
+            );
         }
-
     }
 
+    private void openWindow(
+            String fxmlFile,
+            String title,
+            boolean modal
+    ) {
 
+        try {
+
+            URL resource =
+                    getClass().getResource(
+                            RESOURCE_BASE + fxmlFile
+                    );
+
+            if (resource == null) {
+
+                showError(
+                        "FXML Error",
+                        fxmlFile + " was not found."
+                );
+
+                return;
+            }
+
+            FXMLLoader loader =
+                    new FXMLLoader(resource);
+
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+
+            stage.setTitle(title);
+            stage.setScene(new Scene(root));
+
+            if (modal) {
+                stage.initModality(
+                        Modality.APPLICATION_MODAL
+                );
+            }
+
+            stage.show();
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+
+            showError(
+                    "Window Error",
+                    "Could not open " + title + "."
+            );
+        }
+    }
+
+    private void showError(
+            String title,
+            String message
+    ) {
+
+        Alert alert =
+                new Alert(Alert.AlertType.ERROR);
+
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+
+        alert.showAndWait();
+    }
 }

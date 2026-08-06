@@ -7,32 +7,47 @@ public class Candidate {
     private String roll;
     private double gpa;
     private String status;
+    private boolean documentsVerified;
 
     public Candidate() {
     }
 
-    public Candidate(int id,
-                     String name,
-                     String roll,
-                     double gpa,
-                     String status) {
+    // Used while adding a new candidate
+    public Candidate(
+            String name,
+            String roll,
+            double gpa,
+            String status
+    ) {
+        this(0, name, roll, gpa, status, false);
+    }
 
+    // Keeps your previous code compatible
+    public Candidate(
+            int id,
+            String name,
+            String roll,
+            double gpa,
+            String status
+    ) {
+        this(id, name, roll, gpa, status, false);
+    }
+
+    // Complete constructor
+    public Candidate(
+            int id,
+            String name,
+            String roll,
+            double gpa,
+            String status,
+            boolean documentsVerified
+    ) {
         this.id = id;
         this.name = name;
         this.roll = roll;
         this.gpa = gpa;
         this.status = status;
-    }
-
-    public Candidate(String name,
-                     String roll,
-                     double gpa,
-                     String status) {
-
-        this.name = name;
-        this.roll = roll;
-        this.gpa = gpa;
-        this.status = status;
+        this.documentsVerified = documentsVerified;
     }
 
     public int getId() {
@@ -73,5 +88,21 @@ public class Candidate {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public boolean isDocumentsVerified() {
+        return documentsVerified;
+    }
+
+    public boolean getDocumentsVerified() {
+        return documentsVerified;
+    }
+
+    public void setDocumentsVerified(boolean documentsVerified) {
+        this.documentsVerified = documentsVerified;
+    }
+
+    public String getVerificationStatus() {
+        return documentsVerified ? "Verified" : "Not Verified";
     }
 }

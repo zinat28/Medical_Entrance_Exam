@@ -2,13 +2,28 @@ package com.summer.section1.group4.medical_entrance_exam.tanvir.user7user8.datab
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class DatabaseInitializer {
 
-    public static void createUsersTable() {
+    private DatabaseInitializer() {
+    }
 
-        String sql = """
+    public static void initializeDatabase() {
+
+        createTables();
+        addDocumentsVerifiedColumnIfMissing();
+        insertDefaultUsers();
+
+        System.out.println(
+                "Database initialization completed."
+        );
+    }
+
+    public static void createTables() {
+
+        String usersTable = """
                 CREATE TABLE IF NOT EXISTS users (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     username TEXT NOT NULL UNIQUE,
@@ -17,50 +32,111 @@ public class DatabaseInitializer {
                 )
                 """;
 
-        try (Connection connection =
-                     DatabaseConnection.getConnection();
-             Statement statement =
-                     connection.createStatement()) {
-
-            statement.execute(sql);
-
-            System.out.println("Users table created");
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void recreateCandidatesTable() {
-
-        String dropTable = """
-                DROP TABLE IF EXISTS candidates
-                """;
-
-        String createTable = """
-                CREATE TABLE candidates (
+        String candidatesTable = """
+                CREATE TABLE IF NOT EXISTS candidates (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     name TEXT NOT NULL,
                     roll TEXT NOT NULL UNIQUE,
                     gpa REAL NOT NULL,
-                    status TEXT NOT NULL DEFAULT 'Pending'
+                    status TEXT NOT NULL DEFAULT 'Pending',
+                    documents_verified INTEGER NOT NULL DEFAULT 0
                 )
                 """;
 
         try (Connection connection =
                      DatabaseConnection.getConnection();
+
              Statement statement =
                      connection.createStatement()) {
 
-            statement.execute(dropTable);
+            statement.execute(usersTable);
+            System.out.println("Users table ready.");
 
-            System.out.println("Old candidates table removed");
-
-            statement.execute(createTable);
-
-            System.out.println("New candidates table created");
+            statement.execute(candidatesTable);
+            System.out.println("Candidates table ready.");
 
         } catch (Exception e) {
+
+            System.out.println(
+                    "Database table creation failed."
+            );
+
+            e.printStackTrace();
+        }
+    }
+
+    private static void addDocumentsVerifiedColumnIfMissing() {
+
+        boolean columnExists = false;
+
+        String checkSql =
+                "PRAGMA table_info(candidates)";
+
+        try (Connection connection =
+                     DatabaseConnection.getConnection();
+
+             Statement statement =
+                     connection.createStatement();
+
+             ResultSet resultSet =
+                     statement.executeQuery(checkSql)) {
+
+            while (resultSet.next()) {
+
+                String columnName =
+                        resultSet.getString("name");
+
+                if ("documents_verified"
+                        .equalsIgnoreCase(columnName)) {
+
+                    columnExists = true;
+                    break;
+                }
+            }
+
+        } catch (Exception e) {
+
+            System.out.println(
+                    "Could not inspect candidates table."
+            );
+
+            e.printStackTrace();
+            return;
+        }
+
+        if (columnExists) {
+
+            System.out.println(
+                    "documents_verified column already exists."
+            );
+
+            return;
+        }
+
+        String alterSql = """
+                ALTER TABLE candidates
+                ADD COLUMN documents_verified
+                INTEGER NOT NULL DEFAULT 0
+                """;
+
+        try (Connection connection =
+                     DatabaseConnection.getConnection();
+
+             Statement statement =
+                     connection.createStatement()) {
+
+            statement.executeUpdate(alterSql);
+
+            System.out.println(
+                    "documents_verified column added."
+            );
+
+        } catch (Exception e) {
+
+            System.out.println(
+                    "Could not add documents_verified column."
+            );
+
             e.printStackTrace();
         }
     }
@@ -75,6 +151,7 @@ public class DatabaseInitializer {
 
         try (Connection connection =
                      DatabaseConnection.getConnection();
+
              PreparedStatement statement =
                      connection.prepareStatement(sql)) {
 
@@ -92,9 +169,16 @@ public class DatabaseInitializer {
                     "director"
             );
 
-            System.out.println("Default users inserted");
+            System.out.println(
+                    "Default users ready."
+            );
 
         } catch (Exception e) {
+
+            System.out.println(
+                    "Default user insertion failed."
+            );
+
             e.printStackTrace();
         }
     }
@@ -111,22 +195,5 @@ public class DatabaseInitializer {
         statement.setString(3, role);
 
         statement.executeUpdate();
-    }
-
-    public static void initializeDatabase() {
-
-        System.out.println(
-                "Starting database table initialization..."
-        );
-
-        createUsersTable();
-
-        recreateCandidatesTable();
-
-        insertDefaultUsers();
-
-        System.out.println(
-                "Database table initialization completed."
-        );
     }
 }
