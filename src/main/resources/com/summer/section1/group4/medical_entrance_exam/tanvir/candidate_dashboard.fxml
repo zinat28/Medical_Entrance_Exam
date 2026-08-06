@@ -1,60 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.summer.section1.group4.medical_entrance_exam.tanvir.user7user8.controller.CandidateDashboardController"
-      spacing="15"
       alignment="CENTER"
-      prefHeight="500"
-      prefWidth="700">
+      spacing="15"
+      prefWidth="750"
+      prefHeight="520">
 
+    <padding>
+        <Insets top="20"
+                right="20"
+                bottom="20"
+                left="20"/>
+    </padding>
 
     <Label text="Candidate List"
-           style="-fx-font-size:20px;"/>
-
+           style="-fx-font-size: 22px; -fx-font-weight: bold;"/>
 
     <TableView fx:id="candidateTable"
-               prefHeight="350"
-               prefWidth="650">
-
+               prefWidth="700"
+               prefHeight="380">
 
         <columns>
 
             <TableColumn fx:id="idColumn"
                          text="ID"
-                         prefWidth="80"/>
-
+                         prefWidth="70"/>
 
             <TableColumn fx:id="nameColumn"
                          text="Name"
+                         prefWidth="200"/>
+
+            <TableColumn fx:id="rollColumn"
+                         text="Roll"
                          prefWidth="150"/>
 
-
-            <TableColumn fx:id="emailColumn"
-                         text="Email"
-                         prefWidth="180"/>
-
-
-            <TableColumn fx:id="phoneColumn"
-                         text="Phone"
-                         prefWidth="120"/>
-
+            <TableColumn fx:id="gpaColumn"
+                         text="GPA"
+                         prefWidth="100"/>
 
             <TableColumn fx:id="statusColumn"
                          text="Status"
-                         prefWidth="120"/>
+                         prefWidth="150"/>
 
         </columns>
 
-
     </TableView>
 
+    <HBox alignment="CENTER"
+          spacing="15">
 
-    <Button text="Refresh"
-            onAction="#refreshCandidates"/>
+        <Button text="Add Candidate"
+                prefWidth="140"
+                onAction="#handleAddCandidate"/>
 
+        <Button text="Refresh"
+                prefWidth="120"
+                onAction="#refreshCandidates"/>
+
+    </HBox>
 
 </VBox>

@@ -7,23 +7,28 @@ public class CandidateDAOTest {
 
     public static void main(String[] args) {
 
-
         Candidate candidate = new Candidate(
                 0,
                 "Rahim Ahmed",
-                "rahim@gmail.com",
-                "01700000000",
+                "MED-1001",
+                5.00,
                 "Pending"
         );
 
+        CandidateDAO candidateDAO =
+                new CandidateDAO();
 
-        CandidateDAO dao = new CandidateDAO();
+        boolean saved =
+                candidateDAO.addCandidate(candidate);
 
-
-        dao.addCandidate(candidate);
-
-
-        System.out.println("Candidate test completed");
-
+        if (saved) {
+            System.out.println(
+                    "Candidate test completed successfully."
+            );
+        } else {
+            System.out.println(
+                    "Candidate test failed."
+            );
+        }
     }
 }

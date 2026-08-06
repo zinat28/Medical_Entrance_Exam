@@ -3,38 +3,21 @@ package com.summer.section1.group4.medical_entrance_exam.tanvir.user7user8.datab
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public final class DatabaseConnection {
 
-    private static final String DATABASE_URL =
+    private static final String URL =
             "jdbc:sqlite:medical_entrance_exam.db";
 
-
     private DatabaseConnection() {
-        // Prevent object creation
     }
-
 
     public static Connection getConnection() throws SQLException {
 
         Connection connection =
-                DriverManager.getConnection(DATABASE_URL);
+                DriverManager.getConnection(URL);
 
-        System.out.println(
-                "Connected Database: "
-                        + connection.getMetaData().getURL()
-        );
-
-
-        // Enable foreign key support
-        try (Statement statement = connection.createStatement()) {
-
-            statement.execute(
-                    "PRAGMA foreign_keys = ON"
-            );
-        }
-
+        System.out.println("Connected Database: " + URL);
 
         return connection;
     }

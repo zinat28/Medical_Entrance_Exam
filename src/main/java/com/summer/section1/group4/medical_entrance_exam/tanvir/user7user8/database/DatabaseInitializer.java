@@ -6,196 +6,127 @@ import java.sql.Statement;
 
 public class DatabaseInitializer {
 
+    public static void createUsersTable() {
 
-    // ===============================
-    // Create Database Tables
-    // ===============================
-
-    public static void createTables() {
-
-
-        String usersTable = """
-                CREATE TABLE IF NOT EXISTS users(
+        String sql = """
+                CREATE TABLE IF NOT EXISTS users (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     username TEXT NOT NULL UNIQUE,
                     password TEXT NOT NULL,
                     role TEXT NOT NULL
-                );
+                )
                 """;
 
+        try (Connection connection =
+                     DatabaseConnection.getConnection();
+             Statement statement =
+                     connection.createStatement()) {
 
-        String candidatesTable = """
-                CREATE TABLE IF NOT EXISTS candidates(
-                    id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    name TEXT NOT NULL,
-                    email TEXT UNIQUE,
-                    phone TEXT,
-                    status TEXT DEFAULT 'Pending'
-                );
-                """;
+            statement.execute(sql);
 
-
-        try(Connection connection = DatabaseConnection.getConnection();
-            Statement statement = connection.createStatement()) {
-
-
-            statement.execute(usersTable);
             System.out.println("Users table created");
 
-
-            statement.execute(candidatesTable);
-            System.out.println("Candidates table created");
-
-
-        } catch(Exception e){
-
+        } catch (Exception e) {
             e.printStackTrace();
-
         }
-
     }
 
+    public static void recreateCandidatesTable() {
 
+        String dropTable = """
+                DROP TABLE IF EXISTS candidates
+                """;
 
-    // ===============================
-    // Insert Default Users
-    // ===============================
+        String createTable = """
+                CREATE TABLE candidates (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    name TEXT NOT NULL,
+                    roll TEXT NOT NULL UNIQUE,
+                    gpa REAL NOT NULL,
+                    status TEXT NOT NULL DEFAULT 'Pending'
+                )
+                """;
 
-    public static void insertDefaultUsers(){
+        try (Connection connection =
+                     DatabaseConnection.getConnection();
+             Statement statement =
+                     connection.createStatement()) {
 
+            statement.execute(dropTable);
+
+            System.out.println("Old candidates table removed");
+
+            statement.execute(createTable);
+
+            System.out.println("New candidates table created");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void insertDefaultUsers() {
 
         String sql = """
                 INSERT OR IGNORE INTO users
-                (username,password,role)
-                VALUES(?,?,?)
+                (username, password, role)
+                VALUES (?, ?, ?)
                 """;
 
+        try (Connection connection =
+                     DatabaseConnection.getConnection();
+             PreparedStatement statement =
+                     connection.prepareStatement(sql)) {
 
-        try(Connection connection = DatabaseConnection.getConnection();
-            PreparedStatement statement =
-                    connection.prepareStatement(sql)){
-
-
-
-            createUser(statement,
+            insertUser(
+                    statement,
                     "medical_officer",
                     "1234",
-                    "Medical Officer");
+                    "medical_officer"
+            );
 
-
-            createUser(statement,
+            insertUser(
+                    statement,
                     "director",
                     "1234",
-                    "Director");
-
-
+                    "director"
+            );
 
             System.out.println("Default users inserted");
 
-
-
-        }catch(Exception e){
-
+        } catch (Exception e) {
             e.printStackTrace();
-
         }
-
     }
 
-
-
-    private static void createUser(
+    private static void insertUser(
             PreparedStatement statement,
             String username,
             String password,
             String role
-    ) throws Exception{
-
+    ) throws Exception {
 
         statement.setString(1, username);
         statement.setString(2, password);
         statement.setString(3, role);
 
         statement.executeUpdate();
-
     }
 
+    public static void initializeDatabase() {
 
+        System.out.println(
+                "Starting database table initialization..."
+        );
 
+        createUsersTable();
 
-    // ===============================
-    // Insert Sample Candidates
-    // ===============================
-
-
-    public static void insertDefaultCandidates(){
-
-
-        String sql = """
-                INSERT OR IGNORE INTO candidates
-                (name,email,phone,status)
-                VALUES
-                ('Rahim Ahmed',
-                 'rahim@gmail.com',
-                 '01711111111',
-                 'Pending'),
-
-                ('Karim Hasan',
-                 'karim@gmail.com',
-                 '01822222222',
-                 'Pending'),
-
-                ('Nusrat Jahan',
-                 'nusrat@gmail.com',
-                 '01933333333',
-                 'Approved');
-                """;
-
-
-
-        try(Connection connection = DatabaseConnection.getConnection();
-            Statement statement = connection.createStatement()){
-
-
-            statement.execute(sql);
-
-
-            System.out.println("Default candidates inserted");
-
-
-        }catch(Exception e){
-
-            e.printStackTrace();
-
-        }
-
-    }
-
-
-
-
-    // ===============================
-    // Run All Initialization
-    // ===============================
-
-
-    public static void initializeDatabase(){
-
-        System.out.println("Starting database initialization...");
-
-
-        createTables();
+        recreateCandidatesTable();
 
         insertDefaultUsers();
 
-        insertDefaultCandidates();
-
-
         System.out.println(
-                "Database initialization completed successfully."
+                "Database table initialization completed."
         );
-
     }
-
-
 }

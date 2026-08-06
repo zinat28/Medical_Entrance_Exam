@@ -4,21 +4,36 @@ public class Candidate {
 
     private int id;
     private String name;
-    private String email;
-    private String phone;
+    private String roll;
+    private double gpa;
     private String status;
 
     public Candidate() {
     }
 
-    public Candidate(int id, String name, String email, String phone, String status) {
+    public Candidate(int id,
+                     String name,
+                     String roll,
+                     double gpa,
+                     String status) {
+
         this.id = id;
         this.name = name;
-        this.email = email;
-        this.phone = phone;
+        this.roll = roll;
+        this.gpa = gpa;
         this.status = status;
     }
 
+    public Candidate(String name,
+                     String roll,
+                     double gpa,
+                     String status) {
+
+        this.name = name;
+        this.roll = roll;
+        this.gpa = gpa;
+        this.status = status;
+    }
 
     public int getId() {
         return id;
@@ -28,7 +43,6 @@ public class Candidate {
         this.id = id;
     }
 
-
     public String getName() {
         return name;
     }
@@ -37,24 +51,21 @@ public class Candidate {
         this.name = name;
     }
 
-
-    public String getEmail() {
-        return email;
+    public String getRoll() {
+        return roll;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setRoll(String roll) {
+        this.roll = roll;
     }
 
-
-    public String getPhone() {
-        return phone;
+    public double getGpa() {
+        return gpa;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setGpa(double gpa) {
+        this.gpa = gpa;
     }
-
 
     public String getStatus() {
         return status;
