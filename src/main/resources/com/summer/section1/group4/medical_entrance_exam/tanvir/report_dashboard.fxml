@@ -3,6 +3,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox xmlns="http://javafx.com/javafx"
@@ -10,8 +12,8 @@
       fx:controller="com.summer.section1.group4.medical_entrance_exam.tanvir.user7user8.controller.ReportDashboardController"
       alignment="CENTER"
       spacing="20"
-      prefWidth="520"
-      prefHeight="350">
+      prefWidth="600"
+      prefHeight="430">
 
     <padding>
         <Insets top="30"
@@ -20,19 +22,81 @@
                 left="30"/>
     </padding>
 
-    <Label text="Candidate Report"
+    <Label text="Medical Entrance Exam Report"
            style="-fx-font-size: 24px;
                   -fx-font-weight: bold;"/>
 
-    <Label text="Report window opened successfully."
-           style="-fx-text-fill: #444444;"/>
-
-    <Label text="Total, verified, approved and pending statistics will be completed in Hour 10."
-           wrapText="true"
+    <Label text="Current candidate summary from SQLite database"
            style="-fx-text-fill: #666666;"/>
 
-    <Button text="Close"
-            prefWidth="140"
-            onAction="#handleClose"/>
+    <GridPane alignment="CENTER"
+              hgap="30"
+              vgap="20">
+
+        <Label text="Total Candidates:"
+               GridPane.columnIndex="0"
+               GridPane.rowIndex="0"
+               style="-fx-font-size: 17px;
+                      -fx-font-weight: bold;"/>
+
+        <Label fx:id="totalCandidatesLabel"
+               text="0"
+               GridPane.columnIndex="1"
+               GridPane.rowIndex="0"
+               style="-fx-font-size: 18px;"/>
+
+
+        <Label text="Verified Candidates:"
+               GridPane.columnIndex="0"
+               GridPane.rowIndex="1"
+               style="-fx-font-size: 17px;
+                      -fx-font-weight: bold;"/>
+
+        <Label fx:id="verifiedCandidatesLabel"
+               text="0"
+               GridPane.columnIndex="1"
+               GridPane.rowIndex="1"
+               style="-fx-font-size: 18px;"/>
+
+
+        <Label text="Approved Candidates:"
+               GridPane.columnIndex="0"
+               GridPane.rowIndex="2"
+               style="-fx-font-size: 17px;
+                      -fx-font-weight: bold;"/>
+
+        <Label fx:id="approvedCandidatesLabel"
+               text="0"
+               GridPane.columnIndex="1"
+               GridPane.rowIndex="2"
+               style="-fx-font-size: 18px;"/>
+
+
+        <Label text="Pending Candidates:"
+               GridPane.columnIndex="0"
+               GridPane.rowIndex="3"
+               style="-fx-font-size: 17px;
+                      -fx-font-weight: bold;"/>
+
+        <Label fx:id="pendingCandidatesLabel"
+               text="0"
+               GridPane.columnIndex="1"
+               GridPane.rowIndex="3"
+               style="-fx-font-size: 18px;"/>
+
+    </GridPane>
+
+    <HBox alignment="CENTER"
+          spacing="15">
+
+        <Button text="Refresh Report"
+                prefWidth="150"
+                onAction="#handleRefresh"/>
+
+        <Button text="Close"
+                prefWidth="120"
+                onAction="#handleClose"/>
+
+    </HBox>
 
 </VBox>

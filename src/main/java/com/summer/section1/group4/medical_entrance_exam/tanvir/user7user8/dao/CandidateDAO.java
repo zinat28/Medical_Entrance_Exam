@@ -12,9 +12,10 @@ import java.util.List;
 
 public class CandidateDAO {
 
-    public boolean addCandidate(
-            Candidate candidate
-    ) {
+    // =========================================================
+    // ADD CANDIDATE
+    // =========================================================
+    public boolean addCandidate(Candidate candidate) {
 
         String sql = """
                 INSERT INTO candidates
@@ -93,6 +94,10 @@ public class CandidateDAO {
         return false;
     }
 
+
+    // =========================================================
+    // GET ALL CANDIDATES
+    // =========================================================
     public List<Candidate> getAllCandidates() {
 
         List<Candidate> candidateList =
@@ -139,6 +144,10 @@ public class CandidateDAO {
         return candidateList;
     }
 
+
+    // =========================================================
+    // GET CANDIDATE BY ID
+    // =========================================================
     public Candidate getCandidateById(
             int candidateId
     ) {
@@ -162,13 +171,19 @@ public class CandidateDAO {
              PreparedStatement statement =
                      connection.prepareStatement(sql)) {
 
-            statement.setInt(1, candidateId);
+            statement.setInt(
+                    1,
+                    candidateId
+            );
 
             try (ResultSet resultSet =
                          statement.executeQuery()) {
 
                 if (resultSet.next()) {
-                    return createCandidate(resultSet);
+
+                    return createCandidate(
+                            resultSet
+                    );
                 }
             }
 
@@ -184,6 +199,10 @@ public class CandidateDAO {
         return null;
     }
 
+
+    // =========================================================
+    // UPDATE COMPLETE CANDIDATE
+    // =========================================================
     public boolean updateCandidate(
             Candidate candidate
     ) {
@@ -268,6 +287,10 @@ public class CandidateDAO {
         return false;
     }
 
+
+    // =========================================================
+    // UPDATE STATUS ONLY
+    // =========================================================
     public boolean updateStatus(
             int candidateId,
             String status
@@ -285,8 +308,15 @@ public class CandidateDAO {
              PreparedStatement statement =
                      connection.prepareStatement(sql)) {
 
-            statement.setString(1, status);
-            statement.setInt(2, candidateId);
+            statement.setString(
+                    1,
+                    status
+            );
+
+            statement.setInt(
+                    2,
+                    candidateId
+            );
 
             return statement.executeUpdate() > 0;
 
@@ -297,10 +327,16 @@ public class CandidateDAO {
             );
 
             e.printStackTrace();
-            return false;
         }
+
+        return false;
     }
 
+
+    // =========================================================
+    // VERIFY DOCUMENTS
+    // Medical Officer
+    // =========================================================
     public boolean verifyDocuments(
             int candidateId
     ) {
@@ -322,7 +358,10 @@ public class CandidateDAO {
              PreparedStatement statement =
                      connection.prepareStatement(sql)) {
 
-            statement.setInt(1, candidateId);
+            statement.setInt(
+                    1,
+                    candidateId
+            );
 
             int rowsAffected =
                     statement.executeUpdate();
@@ -348,6 +387,10 @@ public class CandidateDAO {
         return false;
     }
 
+
+    // =========================================================
+    // MARK DOCUMENTS NOT VERIFIED
+    // =========================================================
     public boolean markDocumentsNotVerified(
             int candidateId
     ) {
@@ -366,7 +409,10 @@ public class CandidateDAO {
              PreparedStatement statement =
                      connection.prepareStatement(sql)) {
 
-            statement.setInt(1, candidateId);
+            statement.setInt(
+                    1,
+                    candidateId
+            );
 
             return statement.executeUpdate() > 0;
 
@@ -377,10 +423,17 @@ public class CandidateDAO {
             );
 
             e.printStackTrace();
-            return false;
         }
+
+        return false;
     }
 
+
+    // =========================================================
+    // APPROVE CANDIDATE
+    // Director
+    // Candidate can only be approved when documents are verified
+    // =========================================================
     public boolean approveCandidate(
             int candidateId
     ) {
@@ -399,7 +452,10 @@ public class CandidateDAO {
              PreparedStatement statement =
                      connection.prepareStatement(sql)) {
 
-            statement.setInt(1, candidateId);
+            statement.setInt(
+                    1,
+                    candidateId
+            );
 
             int rowsAffected =
                     statement.executeUpdate();
@@ -425,6 +481,10 @@ public class CandidateDAO {
         return false;
     }
 
+
+    // =========================================================
+    // REMOVE DIRECTOR APPROVAL
+    // =========================================================
     public boolean removeCandidateApproval(
             int candidateId
     ) {
@@ -446,7 +506,10 @@ public class CandidateDAO {
              PreparedStatement statement =
                      connection.prepareStatement(sql)) {
 
-            statement.setInt(1, candidateId);
+            statement.setInt(
+                    1,
+                    candidateId
+            );
 
             int rowsAffected =
                     statement.executeUpdate();
@@ -472,6 +535,10 @@ public class CandidateDAO {
         return false;
     }
 
+
+    // =========================================================
+    // DELETE CANDIDATE
+    // =========================================================
     public boolean deleteCandidate(
             int candidateId
     ) {
@@ -487,7 +554,10 @@ public class CandidateDAO {
              PreparedStatement statement =
                      connection.prepareStatement(sql)) {
 
-            statement.setInt(1, candidateId);
+            statement.setInt(
+                    1,
+                    candidateId
+            );
 
             int rowsAffected =
                     statement.executeUpdate();
@@ -513,19 +583,195 @@ public class CandidateDAO {
         return false;
     }
 
+
+    // =========================================================
+    // HOUR 10 - REPORT GENERATION
+    // =========================================================
+
+    // Total number of candidates
+    public int getTotalCandidates() {
+
+        String sql = """
+                SELECT COUNT(*) AS total
+                FROM candidates
+                """;
+
+        try (Connection connection =
+                     DatabaseConnection.getConnection();
+
+             Statement statement =
+                     connection.createStatement();
+
+             ResultSet resultSet =
+                     statement.executeQuery(sql)) {
+
+            if (resultSet.next()) {
+
+                return resultSet.getInt(
+                        "total"
+                );
+            }
+
+        } catch (Exception e) {
+
+            System.out.println(
+                    "Failed to count total candidates."
+            );
+
+            e.printStackTrace();
+        }
+
+        return 0;
+    }
+
+
+    // Number of candidates whose documents are verified
+    public int getVerifiedCandidatesCount() {
+
+        String sql = """
+                SELECT COUNT(*) AS total
+                FROM candidates
+                WHERE documents_verified = 1
+                """;
+
+        try (Connection connection =
+                     DatabaseConnection.getConnection();
+
+             Statement statement =
+                     connection.createStatement();
+
+             ResultSet resultSet =
+                     statement.executeQuery(sql)) {
+
+            if (resultSet.next()) {
+
+                return resultSet.getInt(
+                        "total"
+                );
+            }
+
+        } catch (Exception e) {
+
+            System.out.println(
+                    "Failed to count verified candidates."
+            );
+
+            e.printStackTrace();
+        }
+
+        return 0;
+    }
+
+
+    // Number of candidates approved by Director
+    public int getApprovedCandidatesCount() {
+
+        String sql = """
+                SELECT COUNT(*) AS total
+                FROM candidates
+                WHERE director_approved = 1
+                """;
+
+        try (Connection connection =
+                     DatabaseConnection.getConnection();
+
+             Statement statement =
+                     connection.createStatement();
+
+             ResultSet resultSet =
+                     statement.executeQuery(sql)) {
+
+            if (resultSet.next()) {
+
+                return resultSet.getInt(
+                        "total"
+                );
+            }
+
+        } catch (Exception e) {
+
+            System.out.println(
+                    "Failed to count approved candidates."
+            );
+
+            e.printStackTrace();
+        }
+
+        return 0;
+    }
+
+
+    // Number of candidates still pending
+    public int getPendingCandidatesCount() {
+
+        String sql = """
+                SELECT COUNT(*) AS total
+                FROM candidates
+                WHERE status = 'Pending'
+                """;
+
+        try (Connection connection =
+                     DatabaseConnection.getConnection();
+
+             Statement statement =
+                     connection.createStatement();
+
+             ResultSet resultSet =
+                     statement.executeQuery(sql)) {
+
+            if (resultSet.next()) {
+
+                return resultSet.getInt(
+                        "total"
+                );
+            }
+
+        } catch (Exception e) {
+
+            System.out.println(
+                    "Failed to count pending candidates."
+            );
+
+            e.printStackTrace();
+        }
+
+        return 0;
+    }
+
+
+    // =========================================================
+    // CREATE CANDIDATE OBJECT FROM RESULTSET
+    // =========================================================
     private Candidate createCandidate(
             ResultSet resultSet
     ) throws Exception {
 
         return new Candidate(
-                resultSet.getInt("id"),
-                resultSet.getString("name"),
-                resultSet.getString("roll"),
-                resultSet.getDouble("gpa"),
-                resultSet.getString("status"),
+
+                resultSet.getInt(
+                        "id"
+                ),
+
+                resultSet.getString(
+                        "name"
+                ),
+
+                resultSet.getString(
+                        "roll"
+                ),
+
+                resultSet.getDouble(
+                        "gpa"
+                ),
+
+                resultSet.getString(
+                        "status"
+                ),
+
                 resultSet.getInt(
                         "documents_verified"
                 ) == 1,
+
                 resultSet.getInt(
                         "director_approved"
                 ) == 1
