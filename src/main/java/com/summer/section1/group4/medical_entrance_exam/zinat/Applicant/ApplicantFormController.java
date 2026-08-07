@@ -28,7 +28,7 @@ public class ApplicantFormController {
     @FXML
     public void initialize() {
         String[] boards = {"Dhaka", "Chattogram", "Rajshahi", "Sylhet", "Barishal", "Khulna",
-                "Jessore", "Dinajpur", "Cumilla", "Mymensingh", "Technical", "Madrasah"};
+                "Jessore", "Dinajpur", "Cumilla", "Mymensingh"};
         SscBoardComB.getItems().addAll(boards);
         HscBoardComB.getItems().addAll(boards);
 
@@ -47,9 +47,7 @@ public class ApplicantFormController {
 
     @FXML
     public void SubmitApplicationOA(ActionEvent actionEvent) {
-        // --- VL: validate that all required input fields are not empty ---
-        if (FullNameTF.getText().trim().isEmpty() || SscGpaTF.getText().trim().isEmpty()
-                || HscGpaTF.getText().trim().isEmpty()) {
+        if (FullNameTF.getText().trim().isEmpty() || SscGpaTF.getText().trim().isEmpty() || HscGpaTF.getText().trim().isEmpty()) {
             FormStatusLabel.setText("VALIDATION ERROR: Please fill out all text boxes!");
             return;
         }
@@ -67,11 +65,11 @@ public class ApplicantFormController {
             return;
         }
 
-        // --- VR: verify academic eligibility criteria for medical admission ---
         if (sscGpa > 5.00 || hscGpa > 5.00) {
             FormStatusLabel.setText("VALIDATION ERROR: GPA can not be greater than 5.00");
             return;
         }
+
         final double MINIMUM_ELIGIBLE_GPA = 3.50;
         if (sscGpa < MINIMUM_ELIGIBLE_GPA || hscGpa < MINIMUM_ELIGIBLE_GPA) {
             FormStatusLabel.setText("VALIDATION ERROR: Minimum GPA of " + MINIMUM_ELIGIBLE_GPA
@@ -79,7 +77,6 @@ public class ApplicantFormController {
             return;
         }
 
-        // --- DP, OP: verification successful -> save data to the system (session) ---
         Applicant a = new Applicant(
                 FullNameTF.getText().trim(),
                 SscBoardComB.getValue(),
@@ -87,7 +84,6 @@ public class ApplicantFormController {
                 sscGpa,
                 hscGpa,
                 DobTF.getValue());
-
         ApplicationSession.getInstance().setApplicant(a);
 
         FormStatusLabel.setText("SUCCESS: Saved! Move to Goal 2: Document Uploads next.");

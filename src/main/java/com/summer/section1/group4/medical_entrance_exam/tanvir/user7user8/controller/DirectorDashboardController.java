@@ -59,52 +59,13 @@ public class DirectorDashboardController {
     private void handleLogout(
             ActionEvent event
     ) {
-
         try {
-
-            URL resource =
-                    getClass().getResource(
-                            RESOURCE_BASE + "login.fxml"
-                    );
-
-            if (resource == null) {
-
-                showError(
-                        "FXML Error",
-                        "login.fxml was not found."
-                );
-
-                return;
-            }
-
-            FXMLLoader loader =
-                    new FXMLLoader(resource);
-
-            Parent root = loader.load();
-
-            Stage currentStage =
-                    (Stage) ((Node) event.getSource())
-                            .getScene()
-                            .getWindow();
-
-            currentStage.setTitle(
-                    "Combined Medical Entrance Exam Portal"
-            );
-
-            currentStage.setScene(
-                    new Scene(root)
-            );
-
-            currentStage.centerOnScreen();
-
+            Parent root = FXMLLoader.load(getClass().getResource("/com/summer/section1/group4/medical_entrance_exam/Login.fxml"));
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            currentStage.setScene(new Scene(root));
+            currentStage.show();
         } catch (IOException e) {
-
             e.printStackTrace();
-
-            showError(
-                    "Logout Error",
-                    "Could not return to the login page."
-            );
         }
     }
 

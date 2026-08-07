@@ -1,5 +1,6 @@
-package com.summer.section1.group4.medical_entrance_exam.zinat;
+package com.summer.section1.group4.medical_entrance_exam;
 
+import com.summer.section1.group4.medical_entrance_exam.zinat.SceneSwitcher;
 import javafx.event.ActionEvent;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -29,11 +30,18 @@ public class LoginController {
             if ((usernameTextField.getText().equals(x.getUsername())) && passwordTextField.getText().equals(x.getPassword()) && userTypeComboBox.getValue().equals("Applicant")) {
                 messegeLabel.setText("Login Successful");
                 SceneSwitcher.switchTo("/com/summer/section1/group4/medical_entrance_exam/zinat/Applicant/Applicant.fxml");
-
             }
             else if ((usernameTextField.getText().equals(x.getUsername())) && passwordTextField.getText().equals(x.getPassword()) && userTypeComboBox.getValue().equals("Question Moderator")) {
                 messegeLabel.setText("Login Successful");
                 SceneSwitcher.switchTo("/com/summer/section1/group4/medical_entrance_exam/zinat/QuestionModerator/QuestionModerator.fxml");
+            }
+            else if ((usernameTextField.getText().equals(x.getUsername())) && passwordTextField.getText().equals(x.getPassword()) && userTypeComboBox.getValue().equals("Medical Officer")) {
+                messegeLabel.setText("Login Successful");
+                SceneSwitcher.switchTo("/com/summer/section1/group4/medical_entrance_exam/tanvir/medical_officer_dashboard.fxml");
+            }
+            else if ((usernameTextField.getText().equals(x.getUsername())) && passwordTextField.getText().equals(x.getPassword()) && userTypeComboBox.getValue().equals("Director")) {
+                messegeLabel.setText("Login Successful");
+                SceneSwitcher.switchTo("/com/summer/section1/group4/medical_entrance_exam/tanvir/director_dashboard.fxml");
             }
         }
 

@@ -89,7 +89,7 @@ public class ApplicantController {
     @FXML
     public void ExitOA(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/com/summer/section1/group4/medical_entrance_exam/zinat/Login.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/com/summer/section1/group4/medical_entrance_exam/Login.fxml"));
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             currentStage.setScene(new Scene(root));
             currentStage.show();

@@ -20,8 +20,7 @@ public class DocumentUploadController {
     @FXML
     private Label DocumentUploadStatusLabel;
 
-    // Local mirrors of what has been attached so far on THIS screen.
-    // The authoritative copy only gets written into ApplicationSession once Submit succeeds.
+//For Documents
     private String identityFileName;
     private String sscFileName;
     private String hscFileName;
@@ -84,18 +83,16 @@ public class DocumentUploadController {
 
     @Deprecated
     public void SubmitApplicationOA(ActionEvent actionEvent) {
-        // kept only so nothing else that referenced the old typo'd method name breaks
+        // Keeping this button for ensuring the submission
     }
 
     @FXML
     public void SubmitDocumentsOA(ActionEvent actionEvent) {
-        // --- VL: validate that all three mandatory file selections have been made ---
         if (identityFileName == null || sscFileName == null || hscFileName == null) {
             DocumentUploadStatusLabel.setText("Portal Upload Status: Pending Attachments");
             return;
         }
 
-        // --- DP, OP: process files, save status flags to system memory ---
         ApplicationSession session = ApplicationSession.getInstance();
         session.setIdentityFileName(identityFileName);
         session.setSscTranscriptFileName(sscFileName);
