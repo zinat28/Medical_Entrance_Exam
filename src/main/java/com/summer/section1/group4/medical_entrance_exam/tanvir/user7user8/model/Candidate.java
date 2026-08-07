@@ -8,21 +8,30 @@ public class Candidate {
     private double gpa;
     private String status;
     private boolean documentsVerified;
+    private boolean directorApproved;
 
     public Candidate() {
     }
 
-    // Used while adding a new candidate
+    // Used when adding a new candidate
     public Candidate(
             String name,
             String roll,
             double gpa,
             String status
     ) {
-        this(0, name, roll, gpa, status, false);
+        this(
+                0,
+                name,
+                roll,
+                gpa,
+                status,
+                false,
+                false
+        );
     }
 
-    // Keeps your previous code compatible
+    // Keeps previous five-parameter code compatible
     public Candidate(
             int id,
             String name,
@@ -30,7 +39,35 @@ public class Candidate {
             double gpa,
             String status
     ) {
-        this(id, name, roll, gpa, status, false);
+        this(
+                id,
+                name,
+                roll,
+                gpa,
+                status,
+                false,
+                false
+        );
+    }
+
+    // Keeps Hour 7 six-parameter code compatible
+    public Candidate(
+            int id,
+            String name,
+            String roll,
+            double gpa,
+            String status,
+            boolean documentsVerified
+    ) {
+        this(
+                id,
+                name,
+                roll,
+                gpa,
+                status,
+                documentsVerified,
+                false
+        );
     }
 
     // Complete constructor
@@ -40,7 +77,8 @@ public class Candidate {
             String roll,
             double gpa,
             String status,
-            boolean documentsVerified
+            boolean documentsVerified,
+            boolean directorApproved
     ) {
         this.id = id;
         this.name = name;
@@ -48,6 +86,7 @@ public class Candidate {
         this.gpa = gpa;
         this.status = status;
         this.documentsVerified = documentsVerified;
+        this.directorApproved = directorApproved;
     }
 
     public int getId() {
@@ -98,11 +137,35 @@ public class Candidate {
         return documentsVerified;
     }
 
-    public void setDocumentsVerified(boolean documentsVerified) {
+    public void setDocumentsVerified(
+            boolean documentsVerified
+    ) {
         this.documentsVerified = documentsVerified;
     }
 
+    public boolean isDirectorApproved() {
+        return directorApproved;
+    }
+
+    public boolean getDirectorApproved() {
+        return directorApproved;
+    }
+
+    public void setDirectorApproved(
+            boolean directorApproved
+    ) {
+        this.directorApproved = directorApproved;
+    }
+
     public String getVerificationStatus() {
-        return documentsVerified ? "Verified" : "Not Verified";
+        return documentsVerified
+                ? "Verified"
+                : "Not Verified";
+    }
+
+    public String getApprovalStatus() {
+        return directorApproved
+                ? "Approved"
+                : "Not Approved";
     }
 }

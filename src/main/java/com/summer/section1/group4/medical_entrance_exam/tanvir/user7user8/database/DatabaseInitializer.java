@@ -14,6 +14,7 @@ public class DatabaseInitializer {
 
         createTables();
         addDocumentsVerifiedColumnIfMissing();
+        addDirectorApprovedColumnIfMissing();
         insertDefaultUsers();
 
         System.out.println(
@@ -39,7 +40,8 @@ public class DatabaseInitializer {
                     roll TEXT NOT NULL UNIQUE,
                     gpa REAL NOT NULL,
                     status TEXT NOT NULL DEFAULT 'Pending',
-                    documents_verified INTEGER NOT NULL DEFAULT 0
+                    documents_verified INTEGER NOT NULL DEFAULT 0,
+                    director_approved INTEGER NOT NULL DEFAULT 0
                 )
                 """;
 
@@ -67,10 +69,32 @@ public class DatabaseInitializer {
 
     private static void addDocumentsVerifiedColumnIfMissing() {
 
+        addIntegerColumnIfMissing(
+                "candidates",
+                "documents_verified",
+                "INTEGER NOT NULL DEFAULT 0"
+        );
+    }
+
+    private static void addDirectorApprovedColumnIfMissing() {
+
+        addIntegerColumnIfMissing(
+                "candidates",
+                "director_approved",
+                "INTEGER NOT NULL DEFAULT 0"
+        );
+    }
+
+    private static void addIntegerColumnIfMissing(
+            String tableName,
+            String columnName,
+            String columnDefinition
+    ) {
+
         boolean columnExists = false;
 
         String checkSql =
-                "PRAGMA table_info(candidates)";
+                "PRAGMA table_info(" + tableName + ")";
 
         try (Connection connection =
                      DatabaseConnection.getConnection();
@@ -83,12 +107,12 @@ public class DatabaseInitializer {
 
             while (resultSet.next()) {
 
-                String columnName =
+                String existingColumn =
                         resultSet.getString("name");
 
-                if ("documents_verified"
-                        .equalsIgnoreCase(columnName)) {
-
+                if (columnName.equalsIgnoreCase(
+                        existingColumn
+                )) {
                     columnExists = true;
                     break;
                 }
@@ -97,7 +121,8 @@ public class DatabaseInitializer {
         } catch (Exception e) {
 
             System.out.println(
-                    "Could not inspect candidates table."
+                    "Could not inspect column: "
+                            + columnName
             );
 
             e.printStackTrace();
@@ -107,17 +132,20 @@ public class DatabaseInitializer {
         if (columnExists) {
 
             System.out.println(
-                    "documents_verified column already exists."
+                    columnName
+                            + " column already exists."
             );
 
             return;
         }
 
-        String alterSql = """
-                ALTER TABLE candidates
-                ADD COLUMN documents_verified
-                INTEGER NOT NULL DEFAULT 0
-                """;
+        String alterSql =
+                "ALTER TABLE "
+                        + tableName
+                        + " ADD COLUMN "
+                        + columnName
+                        + " "
+                        + columnDefinition;
 
         try (Connection connection =
                      DatabaseConnection.getConnection();
@@ -128,13 +156,14 @@ public class DatabaseInitializer {
             statement.executeUpdate(alterSql);
 
             System.out.println(
-                    "documents_verified column added."
+                    columnName + " column added."
             );
 
         } catch (Exception e) {
 
             System.out.println(
-                    "Could not add documents_verified column."
+                    "Could not add column: "
+                            + columnName
             );
 
             e.printStackTrace();

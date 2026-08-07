@@ -12,12 +12,21 @@ import java.util.List;
 
 public class CandidateDAO {
 
-    public boolean addCandidate(Candidate candidate) {
+    public boolean addCandidate(
+            Candidate candidate
+    ) {
 
         String sql = """
                 INSERT INTO candidates
-                (name, roll, gpa, status, documents_verified)
-                VALUES (?, ?, ?, ?, ?)
+                (
+                    name,
+                    roll,
+                    gpa,
+                    status,
+                    documents_verified,
+                    director_approved
+                )
+                VALUES (?, ?, ?, ?, ?, ?)
                 """;
 
         try (Connection connection =
@@ -48,13 +57,29 @@ public class CandidateDAO {
 
             statement.setInt(
                     5,
-                    candidate.isDocumentsVerified() ? 1 : 0
+                    candidate.isDocumentsVerified()
+                            ? 1
+                            : 0
+            );
+
+            statement.setInt(
+                    6,
+                    candidate.isDirectorApproved()
+                            ? 1
+                            : 0
             );
 
             int rowsAffected =
                     statement.executeUpdate();
 
-            return rowsAffected > 0;
+            if (rowsAffected > 0) {
+
+                System.out.println(
+                        "Candidate added successfully."
+                );
+
+                return true;
+            }
 
         } catch (Exception e) {
 
@@ -63,22 +88,25 @@ public class CandidateDAO {
             );
 
             e.printStackTrace();
-            return false;
         }
+
+        return false;
     }
 
     public List<Candidate> getAllCandidates() {
 
-        List<Candidate> candidates =
+        List<Candidate> candidateList =
                 new ArrayList<>();
 
         String sql = """
-                SELECT id,
-                       name,
-                       roll,
-                       gpa,
-                       status,
-                       documents_verified
+                SELECT
+                    id,
+                    name,
+                    roll,
+                    gpa,
+                    status,
+                    documents_verified,
+                    director_approved
                 FROM candidates
                 ORDER BY id ASC
                 """;
@@ -94,10 +122,9 @@ public class CandidateDAO {
 
             while (resultSet.next()) {
 
-                Candidate candidate =
-                        createCandidate(resultSet);
-
-                candidates.add(candidate);
+                candidateList.add(
+                        createCandidate(resultSet)
+                );
             }
 
         } catch (Exception e) {
@@ -109,18 +136,22 @@ public class CandidateDAO {
             e.printStackTrace();
         }
 
-        return candidates;
+        return candidateList;
     }
 
-    public Candidate getCandidateById(int candidateId) {
+    public Candidate getCandidateById(
+            int candidateId
+    ) {
 
         String sql = """
-                SELECT id,
-                       name,
-                       roll,
-                       gpa,
-                       status,
-                       documents_verified
+                SELECT
+                    id,
+                    name,
+                    roll,
+                    gpa,
+                    status,
+                    documents_verified,
+                    director_approved
                 FROM candidates
                 WHERE id = ?
                 """;
@@ -163,7 +194,8 @@ public class CandidateDAO {
                     roll = ?,
                     gpa = ?,
                     status = ?,
-                    documents_verified = ?
+                    documents_verified = ?,
+                    director_approved = ?
                 WHERE id = ?
                 """;
 
@@ -195,15 +227,34 @@ public class CandidateDAO {
 
             statement.setInt(
                     5,
-                    candidate.isDocumentsVerified() ? 1 : 0
+                    candidate.isDocumentsVerified()
+                            ? 1
+                            : 0
             );
 
             statement.setInt(
                     6,
+                    candidate.isDirectorApproved()
+                            ? 1
+                            : 0
+            );
+
+            statement.setInt(
+                    7,
                     candidate.getId()
             );
 
-            return statement.executeUpdate() > 0;
+            int rowsAffected =
+                    statement.executeUpdate();
+
+            if (rowsAffected > 0) {
+
+                System.out.println(
+                        "Candidate updated successfully."
+                );
+
+                return true;
+            }
 
         } catch (Exception e) {
 
@@ -212,8 +263,9 @@ public class CandidateDAO {
             );
 
             e.printStackTrace();
-            return false;
         }
+
+        return false;
     }
 
     public boolean updateStatus(
@@ -303,11 +355,8 @@ public class CandidateDAO {
         String sql = """
                 UPDATE candidates
                 SET documents_verified = 0,
-                    status = CASE
-                        WHEN status = 'Verified'
-                        THEN 'Pending'
-                        ELSE status
-                    END
+                    director_approved = 0,
+                    status = 'Pending'
                 WHERE id = ?
                 """;
 
@@ -332,6 +381,97 @@ public class CandidateDAO {
         }
     }
 
+    public boolean approveCandidate(
+            int candidateId
+    ) {
+
+        String sql = """
+                UPDATE candidates
+                SET director_approved = 1,
+                    status = 'Approved'
+                WHERE id = ?
+                  AND documents_verified = 1
+                """;
+
+        try (Connection connection =
+                     DatabaseConnection.getConnection();
+
+             PreparedStatement statement =
+                     connection.prepareStatement(sql)) {
+
+            statement.setInt(1, candidateId);
+
+            int rowsAffected =
+                    statement.executeUpdate();
+
+            if (rowsAffected > 0) {
+
+                System.out.println(
+                        "Candidate approved successfully."
+                );
+
+                return true;
+            }
+
+        } catch (Exception e) {
+
+            System.out.println(
+                    "Candidate approval failed."
+            );
+
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+    public boolean removeCandidateApproval(
+            int candidateId
+    ) {
+
+        String sql = """
+                UPDATE candidates
+                SET director_approved = 0,
+                    status = CASE
+                        WHEN documents_verified = 1
+                        THEN 'Verified'
+                        ELSE 'Pending'
+                    END
+                WHERE id = ?
+                """;
+
+        try (Connection connection =
+                     DatabaseConnection.getConnection();
+
+             PreparedStatement statement =
+                     connection.prepareStatement(sql)) {
+
+            statement.setInt(1, candidateId);
+
+            int rowsAffected =
+                    statement.executeUpdate();
+
+            if (rowsAffected > 0) {
+
+                System.out.println(
+                        "Candidate approval removed."
+                );
+
+                return true;
+            }
+
+        } catch (Exception e) {
+
+            System.out.println(
+                    "Approval removal failed."
+            );
+
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
     public boolean deleteCandidate(
             int candidateId
     ) {
@@ -349,7 +489,17 @@ public class CandidateDAO {
 
             statement.setInt(1, candidateId);
 
-            return statement.executeUpdate() > 0;
+            int rowsAffected =
+                    statement.executeUpdate();
+
+            if (rowsAffected > 0) {
+
+                System.out.println(
+                        "Candidate deleted successfully."
+                );
+
+                return true;
+            }
 
         } catch (Exception e) {
 
@@ -358,8 +508,9 @@ public class CandidateDAO {
             );
 
             e.printStackTrace();
-            return false;
         }
+
+        return false;
     }
 
     private Candidate createCandidate(
@@ -374,6 +525,9 @@ public class CandidateDAO {
                 resultSet.getString("status"),
                 resultSet.getInt(
                         "documents_verified"
+                ) == 1,
+                resultSet.getInt(
+                        "director_approved"
                 ) == 1
         );
     }
