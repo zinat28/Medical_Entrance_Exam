@@ -43,6 +43,14 @@ public class LoginController {
                 messegeLabel.setText("Login Successful");
                 SceneSwitcher.switchTo("/com/summer/section1/group4/medical_entrance_exam/tanvir/director_dashboard.fxml");
             }
+            else if ((usernameTextField.getText().equals(x.getUsername())) && passwordTextField.getText().equals(x.getPassword()) && userTypeComboBox.getValue().equals("Financial Officer")) {
+                messegeLabel.setText("Login Successful");
+                SceneSwitcher.switchTo("/com/summer/section1/group4/medical_entrance_exam/reham/JubayerAhmed_2330814/JubayerAhmedMenu.fxml");
+            }
+            else if ((usernameTextField.getText().equals(x.getUsername())) && passwordTextField.getText().equals(x.getPassword()) && userTypeComboBox.getValue().equals("Invigilator")) {
+                messegeLabel.setText("Login Successful");
+                SceneSwitcher.switchTo("/com/summer/section1/group4/medical_entrance_exam/reham/JubayerAhmed_2330814/JubayerAhmedMenu.fxml");
+            }
         }
 
         messegeLabel.setText("Login Failed");

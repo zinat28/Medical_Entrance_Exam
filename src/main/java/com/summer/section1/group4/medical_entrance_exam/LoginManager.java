@@ -13,8 +13,8 @@ public class LoginManager {
         loginArrayList.add(new Login("tanvir", "1234", "Director"));
         loginArrayList.add(new Login("jakia", "12345", "Applicant"));
         loginArrayList.add(new Login("jakia", "12345", "Question Moderator"));
-        loginArrayList.add(new Login("jubayer", "1234", "Medical Officer"));
-        loginArrayList.add(new Login("jubayer", "1234", "Director"));
+        loginArrayList.add(new Login("jubayer", "1234", "Financial Officer"));
+        loginArrayList.add(new Login("jubayer", "1234", "Invigilator"));
     }
 
     public static List<Login> getLoginArrayList(){

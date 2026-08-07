@@ -25,6 +25,8 @@ module com.summer.section1.group4.medical_entrance_exam {
         opens com.summer.section1.group4.medical_entrance_exam.tanvir.user7user8.model
         to javafx.base, javafx.fxml;
 
+        opens com.summer.section1.group4.medical_entrance_exam.reham.JubayerAhmed_2330814 to javafx.fxml;
+
         exports com.summer.section1.group4.medical_entrance_exam.tanvir.user7user8.controller;
         exports com.summer.section1.group4.medical_entrance_exam.tanvir.user7user8.model;
         exports com.summer.section1.group4.medical_entrance_exam.tanvir.user7user8.dao;
