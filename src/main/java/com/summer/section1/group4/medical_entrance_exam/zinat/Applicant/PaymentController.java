@@ -48,7 +48,7 @@ public class PaymentController {
     public void SubmitPaymentProofA(ActionEvent actionEvent) {
         ApplicationSession session = ApplicationSession.getInstance();
 
-        // --- VR: cross-verify that Goal 1 (Form) and Goal 2 (Documents) are valid first ---
+
         if (!session.isFormSubmitted()) {
             PaymentProofStatusLabel.setText("Payment Status: Unpaid — complete Goal 1 (Application Form) first.");
             return;
@@ -62,11 +62,11 @@ public class PaymentController {
             return;
         }
 
-        // --- DP: process the payment transaction, flip the clearance boolean ---
+
         session.setPaymentProofFileName(paymentProofFileName);
         session.setPaymentCleared(true);
 
-        // --- UIE (event-6 success branch) ---
+
         PaymentProofStatusLabel.setText("PAYMENT RECEIVED: Registration process invoice cleared successfully.");
     }
 }

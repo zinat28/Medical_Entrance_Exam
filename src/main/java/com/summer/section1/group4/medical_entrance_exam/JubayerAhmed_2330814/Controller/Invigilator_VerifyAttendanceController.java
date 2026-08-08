@@ -1,7 +1,7 @@
 package com.summer.section1.group4.medical_entrance_exam.JubayerAhmed_2330814.Controller;
 
-import com.example.group4medicalexamsimulation.JubayerAhmed_2330814.NonUser.AttendanceRecord;
-import com.example.group4medicalexamsimulation.JubayerAhmed_2330814.User.Invigilator;
+import com.summer.section1.group4.medical_entrance_exam.JubayerAhmed_2330814.NonUser.AttendanceRecord;
+import com.summer.section1.group4.medical_entrance_exam.JubayerAhmed_2330814.User.Invigilator;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -53,7 +53,7 @@ public class Invigilator_VerifyAttendanceController {
         checkTimeColumn.setCellValueFactory(new PropertyValueFactory<>("checkTime"));
         statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
         arrivalTimeColumn.setCellValueFactory(new PropertyValueFactory<>("arrivalTime"));
-        attendanceTableView.setItems(FXCollections.observableArrayList(Invigilator.attendanceRecords));
+        attendanceTableView.setItems(FXCollections.observableArrayList());
     }
 
     @FXML
@@ -100,6 +100,6 @@ public class Invigilator_VerifyAttendanceController {
         }
 
         Invigilator.verifyAttendanceAndSeating(roll, admitCard);
-        attendanceTableView.setItems(FXCollections.observableArrayList(Invigilator.attendanceRecords));
+        attendanceTableView.setItems(FXCollections.observableArrayList());
     }
 }

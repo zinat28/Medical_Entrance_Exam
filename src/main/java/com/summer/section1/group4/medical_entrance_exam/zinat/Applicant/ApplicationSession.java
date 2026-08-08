@@ -25,15 +25,12 @@ public class ApplicationSession {
     private static final ApplicationSession instance = new ApplicationSession();
 
     private ApplicationSession() {
-        // private constructor -> nobody else can instantiate this class
     }
 
     public static ApplicationSession getInstance() {
         return instance;
     }
 
-    // Sample "medical college" master data, used by Goal-7 (Choice Locking)
-    // and Goal-8 (Allocation). In a real system this would come from a database table.
     public static final String[] MEDICAL_COLLEGES = {
             "Dhaka Medical College",
             "Sher-e-Bangla Medical College",
@@ -128,7 +125,7 @@ public class ApplicationSession {
 
     // ---------------------------------------------------------------
     // GOAL 4: Admit Card Download (roll number is generated here, once,
-    // and reused by every later goal -> "lazy-loaded random identifier engine")
+    // and reused by every later goal")
     // ---------------------------------------------------------------
     private String rollNumber;
     private boolean admitCardGenerated = false;

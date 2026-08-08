@@ -1,10 +1,10 @@
-package com.example.group4medicalexamsimulation.JubayerAhmed_2330814.User;
+package com.summer.section1.group4.medical_entrance_exam.JubayerAhmed_2330814.User;
 
-import com.example.group4medicalexamsimulation.JubayerAhmed_2330814.NonUser.*;
+import com.summer.section1.group4.medical_entrance_exam.JubayerAhmed_2330814.NonUser.*;
 import java.io.*;
 import java.util.ArrayList;
 
-public class FinanceOfficer extends SystemUser implements Serializable {
+public class FinanceOfficer extends com.example.group4medicalexamsimulation.JubayerAhmed_2330814.User.SystemUser implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private String officerId;

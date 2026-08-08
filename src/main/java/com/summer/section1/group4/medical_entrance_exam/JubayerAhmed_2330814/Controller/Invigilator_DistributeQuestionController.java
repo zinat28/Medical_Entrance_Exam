@@ -1,7 +1,7 @@
 package com.summer.section1.group4.medical_entrance_exam.JubayerAhmed_2330814.Controller;
 
-import com.example.group4medicalexamsimulation.JubayerAhmed_2330814.NonUser.QuestionBooklet;
-import com.example.group4medicalexamsimulation.JubayerAhmed_2330814.User.Invigilator;
+import com.summer.section1.group4.medical_entrance_exam.JubayerAhmed_2330814.NonUser.QuestionBooklet;
+import com.summer.section1.group4.medical_entrance_exam.JubayerAhmed_2330814.User.Invigilator;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -49,7 +49,7 @@ public class Invigilator_DistributeQuestionController {
         serialNumberColumn.setCellValueFactory(new PropertyValueFactory<>("serialNumber"));
         examSetCodeColumn.setCellValueFactory(new PropertyValueFactory<>("examSetCode"));
         isDistributedColumn.setCellValueFactory(new PropertyValueFactory<>("isDistributed"));
-        bookletTableView.setItems(FXCollections.observableArrayList(Invigilator.questionBooklets));
+        bookletTableView.setItems(FXCollections.observableArrayList());
     }
 
     @FXML

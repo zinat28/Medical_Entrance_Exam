@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="550.0" prefWidth="565.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.group4medicalexamsimulation.JubayerAhmed_2330814.Controller.JubayerAhmedMenuController">
+<AnchorPane prefHeight="550.0" prefWidth="565.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer.section1.group4.medical_entrance_exam.JubayerAhmed_2330814.Controller.JubayerAhmedMenuController">
    <children>
       <Label layoutX="20.0" layoutY="20.0" text="Jubayer Ahmed - Main Navigation Menu" />
 

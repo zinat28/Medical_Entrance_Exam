@@ -28,7 +28,7 @@ public class ChoiceLockingController {
     public void initialize() {
         ApplicationSession session = ApplicationSession.getInstance();
 
-        // --- VR: verify the candidate has a passing/eligible score first ---
+
         if (!session.isResultDeclared() || !session.isPassed()) {
             ChoiceLockStatusLabel.setText("Status: Choice Locking is only available after a PASS result (Goal 6).");
             cmbChoice1.setDisable(true);
@@ -39,7 +39,7 @@ public class ChoiceLockingController {
             return;
         }
 
-        // --- DP: fetch the list of available medical institutions ---
+
         List<String> colleges = Arrays.asList(ApplicationSession.MEDICAL_COLLEGES);
         cmbChoice1.getItems().addAll(colleges);
         cmbChoice2.getItems().addAll(colleges);
@@ -61,7 +61,7 @@ public class ChoiceLockingController {
 
         List<ComboBox<String>> boxes = Arrays.asList(cmbChoice1, cmbChoice2, cmbChoice3, cmbChoice4, cmbChoice5);
 
-        // --- VL: validate all 5 fields are selected ---
+
         for (ComboBox<String> box : boxes) {
             if (box.getValue() == null) {
                 ChoiceLockStatusLabel.setText("VALIDATION ERROR: Please select all 5 choice preferences.");
@@ -69,7 +69,7 @@ public class ChoiceLockingController {
             }
         }
 
-        // --- VL: ensure no duplicate institutions across priority slots ---
+
         Set<String> uniqueCheck = new HashSet<>();
         for (ComboBox<String> box : boxes) {
             uniqueCheck.add(box.getValue());
@@ -79,7 +79,7 @@ public class ChoiceLockingController {
             return;
         }
 
-        // --- DP, OP: save the final locked choice array to system data records ---
+
         List<String> orderedChoices = Arrays.asList(
                 cmbChoice1.getValue(), cmbChoice2.getValue(), cmbChoice3.getValue(),
                 cmbChoice4.getValue(), cmbChoice5.getValue());

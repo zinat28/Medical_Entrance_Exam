@@ -49,7 +49,19 @@ public class LoginController {
             }
             else if ((usernameTextField.getText().equals(x.getUsername())) && passwordTextField.getText().equals(x.getPassword()) && userTypeComboBox.getValue().equals("Invigilator")) {
                 messegeLabel.setText("Login Successful");
-                SceneSwitcher.switchTo("/com/summer/section1/group4/medical_entrance_exam/reham/JubayerAhmed_2330814/JubayerAhmedMenu.fxml");
+                SceneSwitcher.switchTo("/com/summer/section1/group4/medical_entrance_exam/JubayerAhmed_2330814/JubayerAhmedMenu.fxml");
+            }
+            else if ((usernameTextField.getText().equals(x.getUsername())) && passwordTextField.getText().equals(x.getPassword()) && userTypeComboBox.getValue().equals("Finance Officer")) {
+                messegeLabel.setText("Login Successful");
+                SceneSwitcher.switchTo("/com/summer/section1/group4/medical_entrance_exam/JubayerAhmed_2330814/JubayerAhmedMenu.fxml");
+            }
+            else if ((usernameTextField.getText().equals(x.getUsername())) && passwordTextField.getText().equals(x.getPassword()) && userTypeComboBox.getValue().equals("Center Coordinator")) {
+                messegeLabel.setText("Login Successful");
+                SceneSwitcher.switchTo("");
+            }
+            else if ((usernameTextField.getText().equals(x.getUsername())) && passwordTextField.getText().equals(x.getPassword()) && userTypeComboBox.getValue().equals("Administrator")) {
+                messegeLabel.setText("Login Successful");
+                SceneSwitcher.switchTo("");
             }
         }
 

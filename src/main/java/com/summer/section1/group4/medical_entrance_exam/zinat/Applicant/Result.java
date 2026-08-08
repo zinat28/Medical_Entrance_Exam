@@ -18,7 +18,7 @@ public class Result {
     public void CheckResultOA(ActionEvent actionEvent) {
         String enteredRoll = ResultRollTF.getText() == null ? "" : ResultRollTF.getText().trim();
 
-        // --- VL: validate roll number format, e.g. "M-675193" (M- followed by 6 digits) ---
+
         if (!enteredRoll.matches("M-\\d{6}")) {
             showMismatch("Status: Query completed. 0 records fetched.");
             ResultCheckLabel.setText("VALIDATION ERROR: Roll number must be formatted like M-123456.");
@@ -27,20 +27,20 @@ public class Result {
 
         ApplicationSession session = ApplicationSession.getInstance();
 
-        // --- VR: run a database query verification check against existing application data ---
+
         if (session.getRollNumber() == null || !enteredRoll.equals(session.getRollNumber())) {
             showMismatch("Status: Query completed. 0 records fetched.");
             return;
         }
 
-        // --- DP: fetch exam records, marks matrix, calculate merit rank ---
+
         if (!session.isResultDeclared()) {
             session.declareResult();
         }
 
         Applicant applicant = session.getApplicant();
 
-        // --- OP: render the marksheet ---
+
         if (session.isPassed()) {
             StringBuilder sheet = new StringBuilder();
             sheet.append("===== OFFICIAL MEDICAL ENTRANCE EXAMINATION MARKSHEET =====\n");

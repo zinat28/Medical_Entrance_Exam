@@ -1,10 +1,15 @@
-package com.example.group4medicalexamsimulation.JubayerAhmed_2330814.User;
+package com.summer.section1.group4.medical_entrance_exam.JubayerAhmed_2330814.User;
 
-import com.example.group4medicalexamsimulation.JubayerAhmed_2330814.NonUser.*;
+import com.summer.section1.group4.medical_entrance_exam.JubayerAhmed_2330814.NonUser.*;
+import com.summer.section1.group4.medical_entrance_exam.JubayerAhmed_2330814.NonUser.AnswerSheet;
+import com.summer.section1.group4.medical_entrance_exam.JubayerAhmed_2330814.NonUser.Candidate;
+import com.summer.section1.group4.medical_entrance_exam.JubayerAhmed_2330814.NonUser.QuestionBooklet;
+
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Collection;
 
-public class Invigilator extends SystemUser implements Serializable {
+public class Invigilator extends com.example.group4medicalexamsimulation.JubayerAhmed_2330814.User.SystemUser implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private String invigilatorId;
@@ -13,9 +18,9 @@ public class Invigilator extends SystemUser implements Serializable {
 
     public static ArrayList<Candidate> candidateList = new ArrayList<>();
     public static ArrayList<AttendanceRecord> attendanceRecords = new ArrayList<>();
-    public static ArrayList<QuestionBooklet> questionBooklets = new ArrayList<>();
+    public static Collection<QuestionBooklet> questionBooklets = new ArrayList<>();
     public static ArrayList<IncidentReport> incidentReports = new ArrayList<>();
-    public static ArrayList<AnswerSheet> answerSheets = new ArrayList<>();
+    public static Collection<AnswerSheet> answerSheets = new ArrayList<>();
     public static ArrayList<HallReport> hallReports = new ArrayList<>();
 
     public Invigilator() {

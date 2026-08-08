@@ -1,7 +1,7 @@
 package com.summer.section1.group4.medical_entrance_exam.JubayerAhmed_2330814.Controller;
 
-import com.example.group4medicalexamsimulation.JubayerAhmed_2330814.NonUser.InstituteDisbursement;
-import com.example.group4medicalexamsimulation.JubayerAhmed_2330814.User.FinanceOfficer;
+import com.summer.section1.group4.medical_entrance_exam.JubayerAhmed_2330814.NonUser.InstituteDisbursement;
+import com.summer.section1.group4.medical_entrance_exam.JubayerAhmed_2330814.User.FinanceOfficer;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

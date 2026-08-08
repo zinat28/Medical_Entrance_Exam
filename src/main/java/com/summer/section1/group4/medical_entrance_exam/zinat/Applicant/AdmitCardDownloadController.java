@@ -20,15 +20,12 @@ public class AdmitCardDownloadController {
     @FXML
     public void DownloadAdmitsCardOA(ActionEvent actionEvent) {
         ApplicationSession session = ApplicationSession.getInstance();
-
-        // --- VL: full name box must not be empty ---
         String enteredName = AdmitCardFullNameTF.getText() == null ? "" : AdmitCardFullNameTF.getText().trim();
         if (enteredName.isEmpty()) {
             AdmitCardStatusLabel.setText("STATUS: Please enter your full name.");
             return;
         }
 
-        // --- VR: cross-verify Document Upload Status and Registration Fee State ---
         if (!session.isFormSubmitted()) {
             AdmitCardStatusLabel.setText("STATUS: No application record found. Complete Goal 1 first.");
             return;
@@ -46,11 +43,9 @@ public class AdmitCardDownloadController {
             return;
         }
 
-        // --- DP: lazy-loaded random identifier engine -> retrieve (or reuse) the roll number ---
         String roll = session.getOrCreateRollNumber();
         Applicant applicant = session.getApplicant();
 
-        // --- OP: compile the dynamic data summary block ---
         StringBuilder slip = new StringBuilder();
         slip.append("========= APPLICANT REGISTRATION RECORD SLIP =========\n");
         slip.append("Roll Number     : ").append(roll).append("\n");
@@ -64,15 +59,10 @@ public class AdmitCardDownloadController {
 
         AdmitCardTA.setText(slip.toString());
 
-        // --- OP: render confirmation line ---
         AdmitCardStatusLabel.setText("System Readiness: Slip file generated and awaiting extraction.");
 
         session.setAdmitCardGenerated(true);
 
-        // --- UIE / file generation utility: compile the record to disk ---
-        // Note: writing a true .pdf normally needs a library such as Apache PDFBox or iText,
-        // which isn't bundled with this project by default. We export the same content as a
-        // plain text "slip" file so the download step is fully functional without new dependencies.
         String fileName = "AdmitCard_" + roll + ".txt";
         try (FileWriter writer = new FileWriter(fileName)) {
             writer.write(slip.toString());

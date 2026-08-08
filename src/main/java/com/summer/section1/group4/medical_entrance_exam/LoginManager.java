@@ -9,12 +9,12 @@ public class LoginManager {
     static {
         loginArrayList.add(new Login("zinat", "12345", "Applicant"));
         loginArrayList.add(new Login("zinat", "12345", "Question Moderator"));
-        loginArrayList.add(new Login("tanvir", "1234", "Medical Officer"));
-        loginArrayList.add(new Login("tanvir", "1234", "Director"));
-        loginArrayList.add(new Login("jakia", "12345", "Applicant"));
-        loginArrayList.add(new Login("jakia", "12345", "Question Moderator"));
-        loginArrayList.add(new Login("jubayer", "1234", "Financial Officer"));
-        loginArrayList.add(new Login("jubayer", "1234", "Invigilator"));
+        loginArrayList.add(new Login("tanvir", "12345", "Medical Officer"));
+        loginArrayList.add(new Login("tanvir", "12345", "Director"));
+        loginArrayList.add(new Login("jakia", "12345", "Administrator"));
+        loginArrayList.add(new Login("jakia", "12345", "Center Coordinator"));
+        loginArrayList.add(new Login("jubayer", "12345", "Finance Officer"));
+        loginArrayList.add(new Login("jubayer", "12345", "Invigilator"));
     }
 
     public static List<Login> getLoginArrayList(){

@@ -32,8 +32,7 @@ public class ApplicantFormController {
         SscBoardComB.getItems().addAll(boards);
         HscBoardComB.getItems().addAll(boards);
 
-        // If the applicant already filled this form earlier in the session, show it again
-        // instead of a blank form (nice-to-have, mirrors "system memory" behaviour).
+
         Applicant existing = ApplicationSession.getInstance().getApplicant();
         if (existing != null) {
             FullNameTF.setText(existing.getApplicantName());
