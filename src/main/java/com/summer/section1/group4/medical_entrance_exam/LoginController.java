@@ -57,11 +57,11 @@ public class LoginController {
             }
             else if ((usernameTextField.getText().equals(x.getUsername())) && passwordTextField.getText().equals(x.getPassword()) && userTypeComboBox.getValue().equals("Center Coordinator")) {
                 messegeLabel.setText("Login Successful");
-                SceneSwitcher.switchTo("");
+                SceneSwitcher.switchTo("/com/summer/section1/group4/medical_entrance_exam/JakiaJumana_1920223/JakiaJumanaDashboard.fxml");
             }
             else if ((usernameTextField.getText().equals(x.getUsername())) && passwordTextField.getText().equals(x.getPassword()) && userTypeComboBox.getValue().equals("Administrator")) {
                 messegeLabel.setText("Login Successful");
-                SceneSwitcher.switchTo("");
+                SceneSwitcher.switchTo("/com/summer/section1/group4/medical_entrance_exam/JakiaJumana_1920223/JakiaJumanaDashboard.fxml");
             }
         }
 
