@@ -3,17 +3,52 @@ package com.summer.section1.group4.medical_entrance_exam.JubayerAhmed_2330814.Co
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class JubayerAhmedMenuController {
 
+    @FXML
+    private Button hallClosingReportButton;
+    @FXML
+    private Button reportIncidentButton;
+    @FXML
+    private Button approveLateEntryButton;
+    @FXML
+    private Button distributeQuestionButton;
+    @FXML
+    private Button revenueReportButton;
+    @FXML
+    private Button reVerifyCandidateButton;
+    @FXML
+    private Button verifyAttendanceButton;
+    @FXML
+    private Button resolveDisputeButton;
+    @FXML
+    private Button dailyReconciliationButton;
+    @FXML
+    private Button adjustScholarshipButton;
+    @FXML
+    private Button issueExtraSheetButton;
+    @FXML
+    private Button verifyPaymentButton;
+    @FXML
+    private Button financialAuditButton;
+    @FXML
+    private Button processRefundButton;
+    @FXML
+    private Button disburseShareButton;
+    @FXML
+    private Button collectAnswerSheetButton;
+
     private void openNewWindow(String fxmlName, String title) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/group4medicalexamsimulation/JubayerAhmed_2330814/" + fxmlName));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/summer/section1/group4/medical_entrance_exam/JubayerAhmed_2330814/" + fxmlName));
             Parent root = loader.load();
             Stage stage = new Stage();
             stage.setTitle(title);
@@ -102,5 +137,19 @@ public class JubayerAhmedMenuController {
     @FXML
     public void handleOpenFinancialAudit(ActionEvent event) {
         openNewWindow("FinanceOfficer_FinancialAudit.fxml", "Financial Audit");
+    }
+
+    @FXML
+    public void handleLogoutButton(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/summer/section1/group4/medical_entrance_exam/Login.fxml"));
+            Parent root = loader.load();
+            Stage stage =(Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+            stage.setTitle("Log in");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
