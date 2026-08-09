@@ -3,8 +3,11 @@ package com.summer.section1.group4.medical_entrance_exam.JakiaJumana_1920223.Con
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -15,7 +18,7 @@ public class JakiaJumanaDashboardController {
 
     private void loadViewIntoRightPane(String fxmlName) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/group4medicalexamsimulation/JakiaJumana_1920223/" + fxmlName));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/summer/section1/group4/medical_entrance_exam/JakiaJumana_1920223/" + fxmlName));
             Parent view = loader.load();
             mainContentPane.getChildren().clear();
             mainContentPane.getChildren().add(view);
@@ -106,5 +109,17 @@ public class JakiaJumanaDashboardController {
     @FXML
     public void handleOpenDownloadDocument(ActionEvent event) {
         loadViewIntoRightPane("ExamCenterCoordinator_DownloadCenterDocument.fxml");
+    }
+
+    @FXML
+    public void Exit01(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/com/summer/section1/group4/medical_entrance_exam/Login.fxml"));
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            currentStage.setScene(new Scene(root));
+            currentStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
