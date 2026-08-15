@@ -14,40 +14,28 @@ public class ExamAdministrator_ApproveApplicantRegistrationController {
 
     @FXML
     private TextField applicationIdTextField;
-
     @FXML
     private TextField applicantIdTextField;
-
     @FXML
     private ComboBox<String> approvalDecisionComboBox;
-
     @FXML
     private DatePicker approvalDatePicker;
-
     @FXML
     private CheckBox notifyApplicantCheckBox;
-
     @FXML
     private Button approveButton;
-
     @FXML
     private TableView<Application> applicationTableView;
-
     @FXML
     private TableColumn<Application, String> applicationIdColumn;
-
     @FXML
     private TableColumn<Application, String> applicantIdColumn;
-
     @FXML
     private TableColumn<Application, String> applicantNameColumn;
-
     @FXML
     private TableColumn<Application, String> submissionDateColumn;
-
     @FXML
     private TableColumn<Application, String> verificationStatusColumn;
-
     @FXML
     private TableColumn<Application, String> approvalStatusColumn;
 
@@ -71,7 +59,7 @@ public class ExamAdministrator_ApproveApplicantRegistrationController {
         String decision = approvalDecisionComboBox.getValue();
         LocalDate date = approvalDatePicker.getValue();
 
-        if (appId == null || appId.trim().isEmpty()) {
+        if (appId == null || appId.trim().isEmpty()) {//checking is empty
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Input Error");
             alert.setHeaderText("Missing Application ID");
@@ -105,9 +93,9 @@ public class ExamAdministrator_ApproveApplicantRegistrationController {
             alert.setContentText("Please select approval date.");
             alert.showAndWait();
             return;
-        }
+        }// fx collection is used for obsevable arraylist
 
-        ExamAdministrator.approveApplicantRegistration(appId);
+        ExamAdministrator.approveApplicantRegistration(appId);//done in model class, here just calling
         applicationTableView.setItems(FXCollections.observableArrayList(ExamAdministrator.applicationList));
-    }
+    }///observable arraylist will help table for auto update
 }

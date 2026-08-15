@@ -12,37 +12,26 @@ public class ExamAdministrator_AssignExamCentersController {
 
     @FXML
     private TextField centerNameTextField;
-
     @FXML
     private TextField capacityTextField;
-
     @FXML
     private TextField locationTextField;
-
     @FXML
     private ComboBox<String> regionComboBox;
-
     @FXML
     private CheckBox activeCenterCheckBox;
-
     @FXML
     private Button assignButton;
-
     @FXML
     private TableView<ExamCenter> examCenterTableView;
-
     @FXML
     private TableColumn<ExamCenter, String> centerIdColumn;
-
     @FXML
     private TableColumn<ExamCenter, String> centerNameColumn;
-
     @FXML
     private TableColumn<ExamCenter, Integer> totalCapacityColumn;
-
     @FXML
     private TableColumn<ExamCenter, Integer> availableSeatsColumn;
-
     @FXML
     private TableColumn<ExamCenter, String> locationColumn;
 

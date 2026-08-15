@@ -1,6 +1,6 @@
 package com.summer.section1.group4.medical_entrance_exam.JakiaJumana_1920223.NonUser;
 
-import java.io.Serializable;
+import java.io.Serializable;// here for binary file using interface
 
 public class AdmitCard implements Serializable {
     private static final long serialVersionUID = 1L;

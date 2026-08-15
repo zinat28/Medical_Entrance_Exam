@@ -70,12 +70,20 @@ public class ExamAdministrator_CreateExamScheduleController {
         if (date == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Input Error");
-            alert.setHeaderText("Missing Exam Date");
+            alert.setHeaderText(" Exam Date Error");
             alert.setContentText("Please select exam date.");
             alert.showAndWait();
             return;
         }
-
+        // Check if exam date is in the past
+        if (date.isBefore(LocalDate.now())) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Invalid Exam Date");
+            alert.setHeaderText("Exam date cannot be in the past");
+            alert.setContentText("Please select today or a future date.");
+            alert.showAndWait();
+            return;
+        }
         if (startTime == null || startTime.trim().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Input Error");
@@ -112,5 +120,11 @@ public class ExamAdministrator_CreateExamScheduleController {
 
         ExamAdministrator.createExamSchedule(date.toString(), startTime, duration);
         scheduleTableView.setItems(FXCollections.observableArrayList(ExamAdministrator.examScheduleList));
+
+
+
+
+
+
     }
 }

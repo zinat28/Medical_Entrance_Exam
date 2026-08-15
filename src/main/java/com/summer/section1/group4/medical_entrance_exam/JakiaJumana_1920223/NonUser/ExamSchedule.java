@@ -72,4 +72,7 @@ public class ExamSchedule implements Serializable {
                 ", isSaved=" + isSaved +
                 '}';
     }
+  //public void checkExamTime(){
+        //int exDate= examDate.get.Year
+   // }
 }

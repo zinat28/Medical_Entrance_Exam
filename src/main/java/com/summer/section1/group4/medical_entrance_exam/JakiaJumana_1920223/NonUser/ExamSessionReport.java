@@ -3,8 +3,8 @@ package com.summer.section1.group4.medical_entrance_exam.JakiaJumana_1920223.Non
 import java.io.Serializable;
 
 public class ExamSessionReport extends SystemReport implements Serializable {
-    private static final long serialVersionUID = 1L;
-
+    private static final long serialVersionUID = 1L;//verssion number for serialization
+//object of this class ar allowed to be converted into a form that can be saved to file
     private String centerId;
     private String sessionRemarks;
     private String submissionTime;

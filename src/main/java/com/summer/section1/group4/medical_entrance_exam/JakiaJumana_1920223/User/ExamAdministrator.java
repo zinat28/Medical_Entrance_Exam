@@ -55,7 +55,7 @@ public class ExamAdministrator extends SystemUser implements Serializable {
     }
 
     public static ExamSchedule createExamSchedule(String examDate, String startTime, int durationMinutes) {
-        ExamSchedule schedule = new ExamSchedule("SCH-" + System.currentTimeMillis() % 10000, examDate, startTime, durationMinutes, true);
+        ExamSchedule schedule = new ExamSchedule("S-" + System.currentTimeMillis() % 10000, examDate, startTime, durationMinutes, true);
         examScheduleList.add(schedule);
         saveListToFile("examScheduleList.bin", examScheduleList);
         return schedule;
@@ -126,7 +126,7 @@ public class ExamAdministrator extends SystemUser implements Serializable {
     }
 
     @SuppressWarnings("unchecked")
-    public static <T> ArrayList<T> loadListFromFile(String filename) {
+    public static <T> ArrayList<T> loadListFromFile(String filename) {//arraylist is loaded from binary
         File file = new File(filename);
         if (!file.exists()) {
             return new ArrayList<>();
@@ -140,7 +140,7 @@ public class ExamAdministrator extends SystemUser implements Serializable {
     }
 
     public static void saveAllLists() {
-        saveListToFile("examScheduleList.bin", examScheduleList);
+        saveListToFile("examScheduleList.bin", examScheduleList);//binary file e save kortese
         saveListToFile("examNoticeList.bin", examNoticeList);
         saveListToFile("applicationList.bin", applicationList);
         saveListToFile("examCenterList.bin", examCenterList);

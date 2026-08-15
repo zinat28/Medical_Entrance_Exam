@@ -119,7 +119,7 @@ public class ExamCenterCoordinator extends SystemUser implements Serializable {
     }
 
     @SuppressWarnings("unchecked")
-    public static <T> ArrayList<T> loadListFromFile(String filename) {
+    public static <T> ArrayList<T> loadListFromFile(String filename) {//decorator, have to do it for file
         File file = new File(filename);
         if (!file.exists()) {
             return new ArrayList<>();
